@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {Text, View, StyleSheet, Image} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import Icons from '../constant/assets'
 
 const SplashScreen = ({navigation}) => {
   useEffect(() => {
@@ -14,6 +15,7 @@ const SplashScreen = ({navigation}) => {
     <SafeAreaView style={styles.safearea}>
       <View>
         <Text>newPortal</Text>
+        <Image source={Icons.carImg}/>
       </View>
     </SafeAreaView>
   );
