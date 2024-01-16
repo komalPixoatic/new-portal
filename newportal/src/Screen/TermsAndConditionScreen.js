@@ -1,27 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import {Text, View, StyleSheet, Image} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import Icons from '../constant/assets'
 
-const SplashScreen = ({navigation}) => {
-  useEffect(() => {
-    setTimeout(() => {
-      //temp();
-    }, 3000);
-  }, []);
-
-
+const TermsAndConditionScreen = ({navigation}) => {
   return (
     <SafeAreaView style={styles.safearea}>
       <View>
-        <Text>newPortal</Text>
-        <Image 
-        
-        style={{
-          height:250,
-          width:300
-        }}
-        source={Icons.carImg}/>
+        <Text>Terms And Condition Screen</Text>
       </View>
     </SafeAreaView>
   );
@@ -34,11 +19,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F8FCFE',
   },
-  appLogo: {
-    width: 300,
-    height: 250,
-    resizeMode: 'contain',
-  },
 });
 
-export default SplashScreen;
+export default TermsAndConditionScreen;
