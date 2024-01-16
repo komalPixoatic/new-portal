@@ -3,6 +3,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import SplashScreen from './src/Screen/SplashScreen';
+import slider from './src/Screen/slider';
+
+
 
 const Stack = createNativeStackNavigator();
 
@@ -13,6 +16,10 @@ const App = () => {
         <Stack.Screen 
         name="SplashScreen" 
         component={SplashScreen} 
+        options={{ headerShown: false }}/>
+        <Stack.Screen 
+        name="slider" 
+        component={slider} 
         options={{ headerShown: false }}/>
 
       </Stack.Navigator>

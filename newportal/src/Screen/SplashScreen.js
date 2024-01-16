@@ -1,21 +1,26 @@
-import React, {useState, useEffect} from 'react';
-import {Text, View, StyleSheet, Image} from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import React, { useState, useEffect } from 'react';
+import { Text, View, StyleSheet, Image } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import Icons from '../constant/assets'
 
-const SplashScreen = ({navigation}) => {
+const SplashScreen = ({ navigation }) => {
+  const temp = ()=>{
+    navigation.navigate("slider")
+  }
   useEffect(() => {
     setTimeout(() => {
-      //temp();
+      temp();
     }, 3000);
   }, []);
 
 
   return (
     <SafeAreaView style={styles.safearea}>
-      <View>
-        <Text>newPortal</Text>
-        <Image source={Icons.carImg}/>
+      <View >
+        <Image source={Icons.taxi}
+          style={styles.Icons} />
+        <Text style={styles.Text1}>
+          New Portal</Text>
       </View>
     </SafeAreaView>
   );
@@ -26,12 +31,22 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F8FCFE',
+    backgroundColor: '#FFD65B',
   },
   appLogo: {
     width: 300,
     height: 250,
     resizeMode: 'contain',
+  },
+  Icons: {
+    width: 75,
+    height: 75,
+    alignItems: "center",
+    alignSelf: "center"
+  },
+  Text1: {
+    fontSize: 35,
+    fontWeight: "bold"
   },
 });
 
