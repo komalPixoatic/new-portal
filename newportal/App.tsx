@@ -36,7 +36,7 @@ const App = () => {
         <Stack.Screen 
         name="ForgotPasswordScreen" 
         component={ForgotPasswordScreen} 
-        options={{ headerShown: true }}
+        options={{ headerShown: false }}
         />
         <Stack.Screen 
         name="TermsAndConditionScreen" 
