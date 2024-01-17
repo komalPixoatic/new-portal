@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
-import { AppRegistry, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { AppRegistry, Image, StyleSheet, Text, TouchableOpacity, View, Dimensions } from 'react-native'
 import Icons from '../constant/assets'
 import Swiper from 'react-native-swiper'
+const dw = Dimensions.get('window').width;
+const dh = Dimensions.get('window').height;
+
 
 const styles = StyleSheet.create({
     wrapper: {
@@ -53,25 +56,25 @@ const styles = StyleSheet.create({
     },
     button1: {
         marginTop: 0,
-        width: 375,
+        width: dw/1.15,
         height: 50,
         backgroundColor: "#FFD65B",
         justifyContent: "center",
         borderRadius: 10,
-        marginLeft: 25,
+        //marginLeft: 25,
         
 
     },
     button2: {
         marginTop: 25,
-        width: 375,
+        width: dw/1.15,
         height: 50,
         backgroundColor: "#FFF",
         justifyContent: "center",
         borderColor: "#EEEEEE",
         borderWidth: 2,
         borderRadius: 10,
-        marginLeft: 25,
+        //marginLeft: 25,
 
     },
     skiptext: {
@@ -110,11 +113,13 @@ export default class SwiperComponent extends Component {
                     </View>
                 </Swiper>
 
-                <View style={{ bottom: 100, position: "absolute", backgroundColor: "#FFF" }}>
+                <View style={{ bottom: 100, position: "absolute", backgroundColor: "#FFF" ,alignSelf:'center'}}>
 
                 <TouchableOpacity style={styles.button1}><Text style={{ alignSelf: "center", fontWeight: "bold" }}>Next</Text></TouchableOpacity>
 
-                    <TouchableOpacity style={styles.button2}>
+                    <TouchableOpacity
+                    onPress={()=>this.props.navigation.navigate("LoginScreen")}
+                    style={styles.button2}>
                         <Text style={styles.skiptext}>Skip</Text>
                     </TouchableOpacity>
                 </View>
