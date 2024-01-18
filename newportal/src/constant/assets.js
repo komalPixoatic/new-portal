@@ -3,6 +3,7 @@
  const taxi1 = require('../../assets/taxi1.png')
  const two = require('../../assets/2.png')
  const three = require('../../assets/3.png')
+ const manuIcon = require('../../assets/manuIcon.png')
  
 
 
@@ -14,5 +15,7 @@
     taxi1,
     two,
     three,
-    taxi
+    taxi,
+    manuIcon,
+    
  }

@@ -8,6 +8,7 @@ import LoginScreen from './src/Screen/LoginScreen';
 import SignUpScreen from './src/Screen/SignUpScreen';
 import ForgotPasswordScreen from './src/Screen/ForgotPasswordScreen';
 import TermsAndConditionScreen from './src/Screen/TermsAndConditionScreen';
+import HomeScreen from './src/Screen/HomeScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -42,6 +43,10 @@ const App = () => {
         name="TermsAndConditionScreen" 
         component={TermsAndConditionScreen} 
         options={{ headerShown: true }}
+        />
+        <Stack.Screen 
+        name="HomeScreen" 
+        component={HomeScreen} 
         />
 
       </Stack.Navigator>

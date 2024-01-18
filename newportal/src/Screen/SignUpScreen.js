@@ -44,7 +44,7 @@ const SignUpScreen = ({ navigation }) => {
                         <CheckBox
                             value={isSelected}
                             onValueChange={setSelection}
-                            //style={styles.checkbox}
+                            boxType='square'
                         />
                         <Text style={styles.lableStyle}>I agree to the <Text style={{textDecorationLine: 'underline'}} onPress={() => { navigation.navigate("TermsAndConditionScreen") }}>Terms & Conditions</Text></Text>
                     </View>
@@ -131,6 +131,10 @@ const styles = StyleSheet.create({
     terms_Con_View:{
         flexDirection:'row',
         alignItems:'center'
+    },
+    checkbox:{
+        height:30,
+        width:30
     }
 
 });
