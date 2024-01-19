@@ -28,7 +28,7 @@ const HomeScreen = ({ navigation }) => {
         return <>
             <View style={styles.HeaderViewStyle}>
                 <TouchableOpacity
-                    onPress={toggleModal}
+                    //onPress={toggleModal}
                     style={{ alignSelf: 'flex-start' }}>
                     <Image
                         source={Icons.manuIcon}
@@ -41,7 +41,6 @@ const HomeScreen = ({ navigation }) => {
 
     return (
         <SafeAreaView style={styles.safearea}>
-
             <Modal
                 animationType="slide"
                 visible={isModalVisible}
@@ -66,25 +65,102 @@ const HomeScreen = ({ navigation }) => {
                 <View
                     style={{
                         //flex: 1,
-                        bottom:0,
-                        position:'absolute',
-                        height:dh/2,
+                        bottom: 0,
+                        position: 'absolute',
+                        //height: dh / 2.9,
                         width: dw / 1,
-                        backgroundColor: "red"
+                        backgroundColor: "#FBFCFD",
+                        borderTopLeftRadius: 10,
+                        borderTopRightRadius: 10,
+                        //borderColor:'red',
+                        //borderTopStartRadius:10,
+                        //borderLeftWidth:1,
+                        //borderStartWidth:1,
+                        //borderTopWidth:1,
+                        //borderWidth:1
+                        elevation: 13,
                     }}>
 
                     <TouchableOpacity
                         onPress={toggleModal2}
-                        style={{ alignSelf: 'flex-start' }}>
+                        style={{ alignSelf: 'flex-end' }}>
                         <Text
                             style={{
                                 textAlign: 'right',
                                 color: "#000",
-                                padding: 10,
-                                fontWeight: 'bold',
-                                fontSize: 15
+                                paddingVertical: 5,
+                                paddingHorizontal: 8,
+                                fontSize: 20,
                             }}>
                             X
+                        </Text>
+                    </TouchableOpacity>
+
+                    <View style={{
+                        flexDirection: 'row',
+                        alignSelf: 'center',
+                        backgroundColor: "#F1F9FF",
+                        width: dw / 1.12,
+                        height: dh / 18,
+                        borderRadius: 10,
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                    }}>
+                        <Text>Do you need special assistance?{" "}{" "}</Text>
+                        <Text>Click here</Text>
+                    </View>
+                    <View style={{
+                        flexDirection: 'row',
+                        justifyContent: 'space-evenly',
+                        // backgroundColor:'red',
+
+                    }}>
+                        <TouchableOpacity
+                        style={{
+                            margin:5,
+                        // borderWidth:1,
+                        alignItems:'center',
+                        justifyContent:'center'
+                        }}>
+                            <Text>Hospital</Text>
+                            <Text>Visit</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                        style={{
+                            margin:5,
+                        // borderWidth:1,
+                        alignItems:'center',
+                        justifyContent:'center'
+                        }}>
+                            <Text>Assistance</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                        style={{
+                            margin:5,
+                        // borderWidth:1,
+                        alignItems:'center',
+                        justifyContent:'center'
+                        }}>
+                            <Text>Wheel</Text>
+                            <Text>Chair</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                        style={{
+                            margin:5,
+                        // borderWidth:1,
+                        alignItems:'center',
+                        justifyContent:'center'
+                        }}>
+                            <Text>Book</Text>
+                            <Text>Now</Text>
+                        </TouchableOpacity>
+
+                    </View>
+                    <TouchableOpacity 
+                    // onPress={() => { navigation.navigate("MainComponent") }}
+                        style={styles.logInBtnStyl}>
+                        <Text style={styles.txBtn}>
+                            Search
                         </Text>
                     </TouchableOpacity>
                 </View>
@@ -141,8 +217,20 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: "#DBDBDB"
     },
-
-
+    logInBtnStyl: {
+        marginHorizontal:20,
+        backgroundColor: "#FDCC0D",
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 10,
+        height: Platform.OS == 'android' ? dh / 15.5 : dh / 19.5,
+        marginVertical: 55
+    },
+    txBtn: {
+        color: "#FFF",
+        fontSize: 15,
+        fontWeight: 'bold'
+    }
 
 });
 
