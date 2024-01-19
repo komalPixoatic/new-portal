@@ -16,6 +16,7 @@ import HomeScreen from './src/Screen/HomeScreen';
 import AccountScreen from './src/Screen/AccountScreen';
 import ActivityScreen from './src/Screen/ActivityScreen';
 import ServicesScreen from './src/Screen/ServicesScreen';
+import Getotp from './src/Screen/Getotp';
 
 const Stack = createNativeStackNavigator();
 
@@ -152,7 +153,7 @@ const App = () => {
         <Stack.Screen
           name="ForgotPasswordScreen"
           component={ForgotPasswordScreen}
-          options={{ headerShown: true }}
+          options={{ headerShown: false }}
         />
         <Stack.Screen
           name="TermsAndConditionScreen"
@@ -162,6 +163,10 @@ const App = () => {
         <Stack.Screen
           name="MainComponent"
           component={MyTabs}
+        />
+        <Stack.Screen
+          name="Getotp"
+          component={Getotp}
         />
 
       </Stack.Navigator>

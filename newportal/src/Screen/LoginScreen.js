@@ -6,46 +6,83 @@ const dw = Dimensions.get('window').width;
 const dh = Dimensions.get('window').height;
 
 const LoginScreen = ({ navigation }) => {
+    const [email, setemail] = useState("")
+    const [password, setpassword] = useState("")
+    const [checkmail, setcheckmail] = useState("false")
+    const [checkpassword, setcheckpassword] = useState("false")
+
+
+    validate1 = (text1) => {
+        console.log(text1);
+        var re = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+        
+
+        setpassword(text1)
+        if (re.test(text1) === true) {
+            console.log("Password is Correct");
+            setcheckpassword("true")
+        } else {
+            console.log("Password is not Correct");
+            setcheckpassword("false")
+        }
+    }
+    validate = (text) => {
+        console.log(text);
+        let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
+        if (reg.test(text) === false) {
+            setemail(text)
+            setcheckmail("true")
+            return false;
+        }
+        else {
+            setemail(text)
+            setcheckmail("false")
+        }
+    }
     return (
         <SafeAreaView style={styles.safearea}>
             <ScrollView showsVerticalScrollIndicator={false}>
-            <View style={styles.ContainerStl}>
-                <Image
-                    style={styles.IconStyl}
-                    source={Icons.taxi} />
-                <Text style={styles.Txheading}>Log In to Your Account</Text>
-                <Text style={styles.lableStyle}>Email</Text>
-                <TextInput
-                    placeholder='Enter your Email'
-                    style={styles.txInputViewStl}
-                />
-                <Text style={styles.lableStyle}>Password</Text>
-                <TextInput
-                    placeholder='Enter your Password'
-                    style={styles.txInputViewStl}
-                />
-                <TouchableOpacity
-                onPress={()=>{navigation.navigate("ForgotPasswordScreen")}}>
-                    <Text style={styles.forgotPassTx}>Forgot password?</Text>
-                </TouchableOpacity>
+                <View style={styles.ContainerStl}>
+                    <Image
+                        style={styles.IconStyl}
+                        source={Icons.taxi} />
+                    <Text style={styles.Txheading}>Log In to Your Account</Text>
+                    <Text style={styles.lableStyle}>Email</Text>
+                    <TextInput
+                        placeholder='Enter your Email'
+                        style={[styles.txInputViewStl, { borderColor: email === "" ? "#fff" : checkmail === "true" ? "red" : "green", borderWidth: 1 }]}
+                        onChangeText={(text) => validate(text)}
 
-                <TouchableOpacity
-                onPress={()=>navigation.navigate("MainComponent")}
-                    style={styles.logInBtnStyl}>
-                    <Text style={styles.txBtn}>
-                        Log In
-                    </Text>
-                </TouchableOpacity>
-
-                <View style={styles.dontHaveAccView}>
-                    <Text style={styles.lableStyle}>Don't have an account?</Text>
+                        value={email}
+                    />
+                    <Text style={styles.lableStyle}>Password</Text>
+                    <TextInput
+                        placeholder='Enter your Password'
+                        style={[styles.txInputViewStl,{ borderColor: password === "" ? "#fff" : checkpassword === "false" ? "red" : "green", borderWidth: 1 }]}
+                        onChangeText={(text1) => validate1(text1)}
+                        value={password}
+                    />
                     <TouchableOpacity
-                    onPress={()=>{navigation.navigate("SignUpScreen")}}>
-                        <Text style={[styles.lableStyle, { color: '#FDCC0D' }]}> Sign Up</Text>
+                        onPress={() => { navigation.navigate("ForgotPasswordScreen") }}>
+                        <Text style={styles.forgotPassTx}>Forgot password?</Text>
                     </TouchableOpacity>
-                </View>
 
-            </View>
+                    <TouchableOpacity
+                        style={styles.logInBtnStyl}>
+                        <Text style={styles.txBtn}>
+                            Log In
+                        </Text>
+                    </TouchableOpacity>
+
+                    <View style={styles.dontHaveAccView}>
+                        <Text style={styles.lableStyle}>Don't have an account?</Text>
+                        <TouchableOpacity
+                            onPress={() => { navigation.navigate("SignUpScreen") }}>
+                            <Text style={[styles.lableStyle, { color: '#FDCC0D' }]}> Sign Up</Text>
+                        </TouchableOpacity>
+                    </View>
+
+                </View>
             </ScrollView>
         </SafeAreaView>
     );
@@ -93,18 +130,18 @@ const styles = StyleSheet.create({
         height: Platform.OS == 'android' ? dh / 15.5 : dh / 19.5,
         marginVertical: 55
     },
-    txInputViewStl:{
+    txInputViewStl: {
         backgroundColor: '#FFFFFF',
         marginVertical: 8,
         height: Platform.OS == 'android' ? dh / 15.5 : dh / 19.5,
         paddingHorizontal: 12,
-        borderRadius:10
+        borderRadius: 10
     },
-    dontHaveAccView:{
+    dontHaveAccView: {
         flexDirection: "row",
         alignSelf: "center",
     },
-    txBtn:{
+    txBtn: {
         color: "#FFF",
         fontSize: 15,
         fontWeight: 'bold'
