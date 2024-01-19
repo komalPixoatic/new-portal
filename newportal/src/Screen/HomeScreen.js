@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Image, TextInput, Dimensions, Platform, TouchableOpacity, ScrollView } from 'react-native';
+import { Text, View, StyleSheet, Image, TextInput, Dimensions, Platform, TouchableOpacity, ScrollView, Button, Modal } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+// import Modal from "react-native-modal";
 import Icons from '../constant/assets'
 const dw = Dimensions.get('window').width;
 const dh = Dimensions.get('window').height;
@@ -11,12 +12,24 @@ const HomeScreen = ({ navigation }) => {
 
     useEffect(() => {
         LocationPermission()
-      }, []);
+    }, []);
+
+    const [isModalVisible, setModalVisible] = useState(false);
+    const [isModalVisible2, setModalVisible2] = useState(true);
+
+    const toggleModal = () => {
+        setModalVisible(!isModalVisible);
+    };
+    const toggleModal2 = () => {
+        setModalVisible2(!isModalVisible2);
+    };
 
     const headerView = () => {
         return <>
             <View style={styles.HeaderViewStyle}>
-                <TouchableOpacity style={{ alignSelf: 'flex-start' }}>
+                <TouchableOpacity
+                    onPress={toggleModal}
+                    style={{ alignSelf: 'flex-start' }}>
                     <Image
                         source={Icons.manuIcon}
                         style={styles.manuIConsStl} />
@@ -28,6 +41,54 @@ const HomeScreen = ({ navigation }) => {
 
     return (
         <SafeAreaView style={styles.safearea}>
+
+            <Modal
+                animationType="slide"
+                visible={isModalVisible}
+                onRequestClose={toggleModal}
+            >
+                <View style={{ flex: 1, width: dw / 1.15, backgroundColor: "#C8C8C8" }}>
+
+                    <TouchableOpacity
+                        onPress={toggleModal}
+                        style={{ alignSelf: 'flex-start' }}>
+                        <Text style={{ textAlign: 'right', color: "#000", padding: 10, fontWeight: 'bold', fontSize: 15 }}>X</Text>
+                    </TouchableOpacity>
+                </View>
+            </Modal>
+
+            <Modal
+                animationType="slide"
+                transparent={true}
+                visible={isModalVisible2}
+                onRequestClose={toggleModal2}
+            >
+                <View
+                    style={{
+                        //flex: 1,
+                        bottom:0,
+                        position:'absolute',
+                        height:dh/2,
+                        width: dw / 1,
+                        backgroundColor: "red"
+                    }}>
+
+                    <TouchableOpacity
+                        onPress={toggleModal2}
+                        style={{ alignSelf: 'flex-start' }}>
+                        <Text
+                            style={{
+                                textAlign: 'right',
+                                color: "#000",
+                                padding: 10,
+                                fontWeight: 'bold',
+                                fontSize: 15
+                            }}>
+                            X
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+            </Modal>
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.ContainerStl}>
                     {headerView()}
