@@ -7,24 +7,70 @@ const AccountScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.safearea}>
+
       <View >
-        <Text style={styles.Text1}>
-        Account Screen</Text>
+        <View style={{ flexDirection: "row" }}>
+          <Image source={Icons.iconsback}
+            style={{ width: 30, height: 25 }} />
+          <Text style={styles.Text1}>
+            My Account</Text></View>
       </View>
+      <View style={{ flexDirection: "row" }}>
+        <View style={{
+          width: 100,
+          height: 100,
+          borderColor: "#000000",
+          borderWidth: 1,
+          //backgroundColor:"red",
+          borderRadius: 50,
+          marginTop: 50,
+          marginLeft: 3,
+        }}><Image source={Icons.iconsuser96}
+          style={{ width: 110, height: 110, marginLeft: -6, marginTop: -6 }} /></View>
+        <View><Text style={{ marginTop: 75, marginLeft: 10 }}>User name : jayant solanki </Text>
+          <Text style={{ marginTop: 1, marginLeft: 10 }}>Email id : jayantsolanki2cool@gmail.com</Text></View></View>
+         {/* <View style={{flexDirection:"row"}}> */}
+          <View style={{width:375,height:70,borderWidth:1,borderBottomColor:"#C0C0C0",borderColor:"#FFF"}}>
+            <View style={{flexDirection:"row"}}>
+            <Image source={Icons.iconsuser2} style={{width:45,height:45,marginTop:10,marginLeft:10}}/>
+          <Text style={{marginTop:24,marginLeft:10}}>My Profile</Text>
+          </View>
+          </View>
+          {/* </View> */}
+          <View style={{width:375,height:70,borderWidth:1,borderBottomColor:"#C0C0C0",borderColor:"#FFF"}}>
+         <View style={{flexDirection:"row"}}>
+          <Image source={Icons.iconswallet} style={{width:45,height:45,marginTop:10,marginLeft:10}}/>
+          <Text style={{marginTop:24,marginLeft:10}}>Wallet</Text>
+          </View></View>
+          <View style={{width:375,height:70,borderWidth:1,borderBottomColor:"#C0C0C0",borderColor:"#FFF"}}>
+          <View style={{flexDirection:"row"}}>
+          <Image source={Icons.iconspassword} style={{width:45,height:45,marginTop:10,marginLeft:10}}/>
+          <Text style={{marginTop:24,marginLeft:10}}>Reset password</Text>
+          </View></View>
+          <View style={{width:375,height:70,borderWidth:1,borderBottomColor:"#C0C0C0",borderColor:"#FFF"}}>
+          <View style={{flexDirection:"row"}}>
+          <Image source={Icons.iconslogout} style={{width:45,height:45,marginTop:10,marginLeft:10}}/>
+          <Text style={{marginTop:24,marginLeft:10}}>Logout</Text>
+          </View></View>
+          
+
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   safearea: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    width:375,height:220,
+    //justifyContent: 'center',
+    //alignItems: 'center',
     backgroundColor: '#FFD65B',
   },
   Text1: {
-    fontSize: 35,
-    fontWeight: "bold"
+    fontSize: 20,
+    fontWeight: "bold",
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: 100
   },
 });
 
