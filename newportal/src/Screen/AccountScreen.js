@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Image } from 'react-native';
+import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Icons from '../constant/assets'
 
@@ -30,28 +30,32 @@ const AccountScreen = ({ navigation }) => {
         <View><Text style={{ marginTop: 75, marginLeft: 10 }}>User name : jayant solanki </Text>
           <Text style={{ marginTop: 1, marginLeft: 10 }}>Email id : jayantsolanki2cool@gmail.com</Text></View></View>
          {/* <View style={{flexDirection:"row"}}> */}
+          <TouchableOpacity>
           <View style={{width:375,height:70,borderWidth:1,borderBottomColor:"#C0C0C0",borderColor:"#FFF"}}>
             <View style={{flexDirection:"row"}}>
             <Image source={Icons.iconsuser2} style={{width:45,height:45,marginTop:10,marginLeft:10}}/>
           <Text style={{marginTop:24,marginLeft:10}}>My Profile</Text>
           </View>
-          </View>
+          </View></TouchableOpacity>
           {/* </View> */}
+          <TouchableOpacity>
           <View style={{width:375,height:70,borderWidth:1,borderBottomColor:"#C0C0C0",borderColor:"#FFF"}}>
          <View style={{flexDirection:"row"}}>
           <Image source={Icons.iconswallet} style={{width:45,height:45,marginTop:10,marginLeft:10}}/>
           <Text style={{marginTop:24,marginLeft:10}}>Wallet</Text>
-          </View></View>
+          </View></View></TouchableOpacity>
+          <TouchableOpacity>
           <View style={{width:375,height:70,borderWidth:1,borderBottomColor:"#C0C0C0",borderColor:"#FFF"}}>
           <View style={{flexDirection:"row"}}>
           <Image source={Icons.iconspassword} style={{width:45,height:45,marginTop:10,marginLeft:10}}/>
           <Text style={{marginTop:24,marginLeft:10}}>Reset password</Text>
-          </View></View>
+          </View></View></TouchableOpacity>
+          <TouchableOpacity>
           <View style={{width:375,height:70,borderWidth:1,borderBottomColor:"#C0C0C0",borderColor:"#FFF"}}>
           <View style={{flexDirection:"row"}}>
           <Image source={Icons.iconslogout} style={{width:45,height:45,marginTop:10,marginLeft:10}}/>
           <Text style={{marginTop:24,marginLeft:10}}>Logout</Text>
-          </View></View>
+          </View></View></TouchableOpacity>
           
 
     </SafeAreaView>

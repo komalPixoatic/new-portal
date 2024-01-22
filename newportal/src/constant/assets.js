@@ -21,12 +21,11 @@ const iconsuser2 = require('../../assets/iconsuser2.png')
 const iconswallet = require('../../assets/iconswallet.png')
 const iconspassword = require('../../assets/iconspassword.png')
 const iconslogout = require('../../assets/iconslogout.png')
-
-
-
-
-
-
+const iconsbackbutton = require('../../assets/iconsbackbutton.png')
+const googlemapstips = require('../../assets/googlemapstips.png')
+const unchecked = require('../../assets/unchecked.png')
+const checkbox = require('../../assets/checkbox.png')
+const send = require('../../assets/send.png')
 
 
 
@@ -54,5 +53,10 @@ export default {
    iconsuser2,
    iconswallet,
    iconspassword,
-   iconslogout
+   iconslogout,
+   iconsbackbutton,
+   googlemapstips,
+   unchecked,
+   checkbox,
+   send,
 }
