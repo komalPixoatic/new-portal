@@ -15,7 +15,8 @@ const HomeScreen = ({ navigation }) => {
     }, []);
 
     const [isModalVisible, setModalVisible] = useState(false);
-    const [isModalVisible2, setModalVisible2] = useState(true);
+    const [isModalVisible2, setModalVisible2] = useState(false);
+    const [isModalVisible3, setModalVisible3] = useState(false);
 
     const toggleModal = () => {
         setModalVisible(!isModalVisible);
@@ -23,12 +24,15 @@ const HomeScreen = ({ navigation }) => {
     const toggleModal2 = () => {
         setModalVisible2(!isModalVisible2);
     };
+    const toggleModal3 = () => {
+        setModalVisible3(!isModalVisible3);
+    };
 
     const headerView = () => {
         return <>
             <View style={styles.HeaderViewStyle}>
                 <TouchableOpacity
-                    //onPress={toggleModal}
+                    onPress={toggleModal2}
                     style={{ alignSelf: 'flex-start' }}>
                     <Image
                         source={Icons.manuIcon}
@@ -72,12 +76,6 @@ const HomeScreen = ({ navigation }) => {
                         backgroundColor: "#FBFCFD",
                         borderTopLeftRadius: 10,
                         borderTopRightRadius: 10,
-                        //borderColor:'red',
-                        //borderTopStartRadius:10,
-                        //borderLeftWidth:1,
-                        //borderStartWidth:1,
-                        //borderTopWidth:1,
-                        //borderWidth:1
                         elevation: 13,
                     }}>
 
@@ -96,75 +94,161 @@ const HomeScreen = ({ navigation }) => {
                         </Text>
                     </TouchableOpacity>
 
-                    <View style={{
-                        flexDirection: 'row',
-                        alignSelf: 'center',
-                        backgroundColor: "#F1F9FF",
-                        width: dw / 1.12,
-                        height: dh / 18,
-                        borderRadius: 10,
-                        alignItems: 'center',
-                        justifyContent: 'center'
-                    }}>
-                        <Text>Do you need special assistance?{" "}{" "}</Text>
-                        <Text>Click here</Text>
-                    </View>
-                    <View style={{
-                        flexDirection: 'row',
-                        justifyContent: 'space-evenly',
-                        // backgroundColor:'red',
-
-                    }}>
-                        <TouchableOpacity
-                        style={{
-                            margin:5,
-                        // borderWidth:1,
-                        alignItems:'center',
-                        justifyContent:'center'
+                    <View style={styles.assistanceCnt}>
+                        <Text style={{ fontWeight: 'bold' }}>Do you need special assistance?{" "}{" "}</Text>
+                        <TouchableOpacity onPress={()=>{
+                            setModalVisible2(!isModalVisible2)
+                            setModalVisible3(!isModalVisible3)
                         }}>
+                            <Text style={{ textDecorationLine: 'underline', fontWeight: 'bold' }}>Click here</Text>
+                        </TouchableOpacity>
+                    </View>
+
+                    <View style={styles.btnOptionM_Cnt}>
+                        <TouchableOpacity
+                            style={styles.btnOptionCnt}>
                             <Text>Hospital</Text>
                             <Text>Visit</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
-                        style={{
-                            margin:5,
-                        // borderWidth:1,
-                        alignItems:'center',
-                        justifyContent:'center'
-                        }}>
+                            style={styles.btnOptionCnt}>
                             <Text>Assistance</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
-                        style={{
-                            margin:5,
-                        // borderWidth:1,
-                        alignItems:'center',
-                        justifyContent:'center'
-                        }}>
+                            style={styles.btnOptionCnt}>
                             <Text>Wheel</Text>
                             <Text>Chair</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
-                        style={{
-                            margin:5,
-                        // borderWidth:1,
-                        alignItems:'center',
-                        justifyContent:'center'
-                        }}>
+                            style={styles.btnOptionCnt}>
                             <Text>Book</Text>
                             <Text>Now</Text>
                         </TouchableOpacity>
 
                     </View>
-                    <TouchableOpacity 
-                    // onPress={() => { navigation.navigate("MainComponent") }}
+                    <TouchableOpacity
                         style={styles.logInBtnStyl}>
                         <Text style={styles.txBtn}>
                             Search
                         </Text>
                     </TouchableOpacity>
+                    
                 </View>
             </Modal>
+            <Modal
+                animationType="slide"
+                transparent={true}
+                visible={isModalVisible3}
+                onRequestClose={toggleModal3}
+            >
+                <View
+                    style={{
+                        //flex: 1,
+                        bottom: 0,
+                        position: 'absolute',
+                        //height: dh / 2.9,
+                        width: dw / 1,
+                        backgroundColor: "#FBFCFD",
+                        borderTopLeftRadius: 10,
+                        borderTopRightRadius: 10,
+                        elevation: 13,
+                    }}>
+
+                    <TouchableOpacity
+                        onPress={toggleModal3}
+                        style={{ alignSelf: 'flex-end' }}>
+                        <Text
+                            style={{
+                                textAlign: 'right',
+                                color: "#000",
+                                paddingVertical: 5,
+                                paddingHorizontal: 8,
+                                fontSize: 20,
+                            }}>
+                            X
+                        </Text>
+                    </TouchableOpacity>
+
+                    <View style={{ width: dw / 1.08,marginBottom:15, alignSelf: 'center' }}>
+                        <Text style={{
+                            fontWeight: 'bold',
+                            fontSize: 18
+                        }}>
+                            Any special assistance</Text>
+                    </View>
+
+                        <View style={styles.btnOptionM_Cnt}>
+                            <TouchableOpacity
+                                style={styles.btnOptionCnt}>
+                                <Text>Hospital</Text>
+                                <Text>Visit</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                style={styles.btnOptionCnt}>
+                                <Text>Assistance</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                style={styles.btnOptionCnt}>
+                                <Text>Wheel</Text>
+                                <Text>Chair</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                style={styles.btnOptionCnt}>
+                                <Text>Book</Text>
+                                <Text>Now</Text>
+                            </TouchableOpacity>
+    
+                        </View>
+                    
+
+                    <View style={{ width: dw / 1.08,marginTop:15, alignSelf: 'center' }}>
+                        <Text style={{
+                            fontWeight: 'bold',
+                            fontSize: 18
+                        }}>
+                            Suggested Rides
+                            </Text>
+                    </View>
+
+                    <TouchableOpacity 
+                    style={{
+                        borderWidth:1,
+                        borderColor:"#F4F4F4",
+                        height:dh/15,
+                        paddingHorizontal:22,
+
+                    }}>
+                        <Image style={{height:40,width:50}} source={Icons.carImg}/>
+                        {/* <Text>Comfort line sedan</Text> */}
+                    </TouchableOpacity>
+                    <TouchableOpacity 
+                    style={{
+                        borderWidth:1,
+                        borderColor:"#F4F4F4",
+                        height:dh/15,
+                        paddingHorizontal:22,
+
+                    }}>
+                        <Image style={{height:40,width:50}} source={Icons.carImg}/>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        style={[styles.logInBtnStyl,{marginVertical: 10}]}>
+                        <Text style={styles.txBtn}>
+                            Book Rides
+                        </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={[styles.logInBtnStyl,{marginVertical: 10,marginBottom: 20,backgroundColor: "#fff",borderWidth:0.8}]}>
+                        <Text style={[styles.txBtn]}>
+                            Reserve a trip
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+            </Modal>
+
+
+
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.ContainerStl}>
                     {headerView()}
@@ -218,20 +302,46 @@ const styles = StyleSheet.create({
         borderColor: "#DBDBDB"
     },
     logInBtnStyl: {
-        marginHorizontal:20,
-        backgroundColor: "#FDCC0D",
+        marginHorizontal: 20,
+        backgroundColor: "#FFD65B",
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 10,
         height: Platform.OS == 'android' ? dh / 15.5 : dh / 19.5,
-        marginVertical: 55
+        marginVertical: 30
     },
     txBtn: {
         color: "#FFF",
-        fontSize: 15,
+        color: "#000",
+        fontSize: 18,
         fontWeight: 'bold'
+    },
+    assistanceCnt: {
+        flexDirection: 'row',
+        alignSelf: 'center',
+        backgroundColor: "#F1F9FF",
+        width: dw / 1.08,
+        height: dh / 18,
+        borderRadius: 10,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: 8
+    },
+    btnOptionM_Cnt: {
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+    },
+    btnOptionCnt: {
+        margin: 3,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#F1F9FF',
+        height: dh / 12,
+        width: dw / 5,
+        borderRadius: 8,
+        borderColor: "#E3E6E8",
+        borderWidth: 1
     }
-
 });
 
 export default HomeScreen;
