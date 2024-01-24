@@ -5,7 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Icons from './src/constant/assets'
 const dw = Dimensions.get('window').width;
 const dh = Dimensions.get('window').height;
-
+import WelcomeSceen from './src/Screen/WelcomeSceen';
 import SplashScreen from './src/Screen/SplashScreen';
 import slider from './src/Screen/slider';
 import LoginScreen from './src/Screen/LoginScreen';
@@ -167,6 +167,10 @@ const App = () => {
         <Stack.Screen
           name="Getotp"
           component={Getotp}
+        />
+        <Stack.Screen
+          name="WelcomeSceen"
+          component={WelcomeSceen}
         />
 
       </Stack.Navigator>
