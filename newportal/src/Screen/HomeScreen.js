@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Image, TextInput, Dimensions, Platform, TouchableOpacity, ScrollView, Button, Modal } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import MapView, {Marker} from 'react-native-maps';
 // import Modal from "react-native-modal";
 import Icons from '../constant/assets'
 const dw = Dimensions.get('window').width;
@@ -17,6 +18,87 @@ const HomeScreen = ({ navigation }) => {
     const [isModalVisible, setModalVisible] = useState(false);
     const [isModalVisible2, setModalVisible2] = useState(false);
     const [isModalVisible3, setModalVisible3] = useState(false);
+
+    const mapStyle = [
+        {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
+        {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
+        {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
+        {
+          featureType: 'administrative.locality',
+          elementType: 'labels.text.fill',
+          stylers: [{color: '#d59563'}],
+        },
+        {
+          featureType: 'poi',
+          elementType: 'labels.text.fill',
+          stylers: [{color: '#d59563'}],
+        },
+        {
+          featureType: 'poi.park',
+          elementType: 'geometry',
+          stylers: [{color: '#263c3f'}],
+        },
+        {
+          featureType: 'poi.park',
+          elementType: 'labels.text.fill',
+          stylers: [{color: '#6b9a76'}],
+        },
+        {
+          featureType: 'road',
+          elementType: 'geometry',
+          stylers: [{color: '#38414e'}],
+        },
+        {
+          featureType: 'road',
+          elementType: 'geometry.stroke',
+          stylers: [{color: '#212a37'}],
+        },
+        {
+          featureType: 'road',
+          elementType: 'labels.text.fill',
+          stylers: [{color: '#9ca5b3'}],
+        },
+        {
+          featureType: 'road.highway',
+          elementType: 'geometry',
+          stylers: [{color: '#746855'}],
+        },
+        {
+          featureType: 'road.highway',
+          elementType: 'geometry.stroke',
+          stylers: [{color: '#1f2835'}],
+        },
+        {
+          featureType: 'road.highway',
+          elementType: 'labels.text.fill',
+          stylers: [{color: '#f3d19c'}],
+        },
+        {
+          featureType: 'transit',
+          elementType: 'geometry',
+          stylers: [{color: '#2f3948'}],
+        },
+        {
+          featureType: 'transit.station',
+          elementType: 'labels.text.fill',
+          stylers: [{color: '#d59563'}],
+        },
+        {
+          featureType: 'water',
+          elementType: 'geometry',
+          stylers: [{color: '#17263c'}],
+        },
+        {
+          featureType: 'water',
+          elementType: 'labels.text.fill',
+          stylers: [{color: '#515c6d'}],
+        },
+        {
+          featureType: 'water',
+          elementType: 'labels.text.stroke',
+          stylers: [{color: '#17263c'}],
+        },
+      ];
 
     const toggleModal = () => {
         setModalVisible(!isModalVisible);
@@ -248,11 +330,16 @@ const HomeScreen = ({ navigation }) => {
             </Modal>
 
 
-
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.ContainerStl}>
                     {headerView()}
-                    <View style={{ paddingHorizontal: 25, }}>
+                    <View>
+                    <View style={{ 
+                        flex:1,
+                        position:'absolute',
+                        zIndex:1
+                        //paddingHorizontal: 25, 
+                        }}>
                         <TextInput
                             placeholder='To'
                             style={styles.txInputViewStl}
@@ -263,6 +350,31 @@ const HomeScreen = ({ navigation }) => {
                         />
 
                     </View>
+                    </View>
+<View>
+<MapView
+          style={{height:dh/1.4,width:dw/1}}
+          initialRegion={{
+            latitude: 37.78825,
+            longitude: -122.4324,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+          }}
+          customMapStyle={mapStyle}>
+          {/* <Marker
+            draggable
+            coordinate={{
+              latitude: 37.78825,
+              longitude: -122.4324,
+            }}
+            onDragEnd={
+              (e) => alert(JSON.stringify(e.nativeEvent.coordinate))
+            }
+            title={'Test Marker'}
+            description={'This is a description of the marker'}
+          /> */}
+        </MapView>
+</View>
                 </View>
             </ScrollView>
         </SafeAreaView>

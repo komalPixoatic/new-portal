@@ -118,7 +118,7 @@ export default class SwiperComponent extends Component {
                 <TouchableOpacity style={styles.button1}><Text style={{ alignSelf: "center", fontWeight: "bold" }}>Next</Text></TouchableOpacity>
 
                     <TouchableOpacity
-                    onPress={()=>this.props.navigation.navigate("LoginScreen")}
+                    onPress={()=>this.props.navigation.navigate("WelcomeSceen")}
                     style={styles.button2}>
                         <Text style={styles.skiptext}>Skip</Text>
                     </TouchableOpacity>
