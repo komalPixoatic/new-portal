@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Image, TextInput, Dimensions, Platform, TouchableOpacity, ScrollView, Button, Modal } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import MapView, {Marker} from 'react-native-maps';
+import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 // import Modal from "react-native-modal";
+
 import Icons from '../constant/assets'
 const dw = Dimensions.get('window').width;
 const dh = Dimensions.get('window').height;
 
 import LocationPermission from '../navigation/LocationPermission';
+import { FadeIn } from 'react-native-reanimated';
 
 const HomeScreen = ({ navigation }) => {
 
@@ -20,85 +22,85 @@ const HomeScreen = ({ navigation }) => {
     const [isModalVisible3, setModalVisible3] = useState(false);
 
     const mapStyle = [
-        {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
-        {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
-        {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
+        { elementType: 'geometry', stylers: [{ color: '#242f3e' }] },
+        { elementType: 'labels.text.fill', stylers: [{ color: '#746855' }] },
+        { elementType: 'labels.text.stroke', stylers: [{ color: '#242f3e' }] },
         {
-          featureType: 'administrative.locality',
-          elementType: 'labels.text.fill',
-          stylers: [{color: '#d59563'}],
+            featureType: 'administrative.locality',
+            elementType: 'labels.text.fill',
+            stylers: [{ color: '#d59563' }],
         },
         {
-          featureType: 'poi',
-          elementType: 'labels.text.fill',
-          stylers: [{color: '#d59563'}],
+            featureType: 'poi',
+            elementType: 'labels.text.fill',
+            stylers: [{ color: '#d59563' }],
         },
         {
-          featureType: 'poi.park',
-          elementType: 'geometry',
-          stylers: [{color: '#263c3f'}],
+            featureType: 'poi.park',
+            elementType: 'geometry',
+            stylers: [{ color: '#263c3f' }],
         },
         {
-          featureType: 'poi.park',
-          elementType: 'labels.text.fill',
-          stylers: [{color: '#6b9a76'}],
+            featureType: 'poi.park',
+            elementType: 'labels.text.fill',
+            stylers: [{ color: '#6b9a76' }],
         },
         {
-          featureType: 'road',
-          elementType: 'geometry',
-          stylers: [{color: '#38414e'}],
+            featureType: 'road',
+            elementType: 'geometry',
+            stylers: [{ color: '#38414e' }],
         },
         {
-          featureType: 'road',
-          elementType: 'geometry.stroke',
-          stylers: [{color: '#212a37'}],
+            featureType: 'road',
+            elementType: 'geometry.stroke',
+            stylers: [{ color: '#212a37' }],
         },
         {
-          featureType: 'road',
-          elementType: 'labels.text.fill',
-          stylers: [{color: '#9ca5b3'}],
+            featureType: 'road',
+            elementType: 'labels.text.fill',
+            stylers: [{ color: '#9ca5b3' }],
         },
         {
-          featureType: 'road.highway',
-          elementType: 'geometry',
-          stylers: [{color: '#746855'}],
+            featureType: 'road.highway',
+            elementType: 'geometry',
+            stylers: [{ color: '#746855' }],
         },
         {
-          featureType: 'road.highway',
-          elementType: 'geometry.stroke',
-          stylers: [{color: '#1f2835'}],
+            featureType: 'road.highway',
+            elementType: 'geometry.stroke',
+            stylers: [{ color: '#1f2835' }],
         },
         {
-          featureType: 'road.highway',
-          elementType: 'labels.text.fill',
-          stylers: [{color: '#f3d19c'}],
+            featureType: 'road.highway',
+            elementType: 'labels.text.fill',
+            stylers: [{ color: '#f3d19c' }],
         },
         {
-          featureType: 'transit',
-          elementType: 'geometry',
-          stylers: [{color: '#2f3948'}],
+            featureType: 'transit',
+            elementType: 'geometry',
+            stylers: [{ color: '#2f3948' }],
         },
         {
-          featureType: 'transit.station',
-          elementType: 'labels.text.fill',
-          stylers: [{color: '#d59563'}],
+            featureType: 'transit.station',
+            elementType: 'labels.text.fill',
+            stylers: [{ color: '#d59563' }],
         },
         {
-          featureType: 'water',
-          elementType: 'geometry',
-          stylers: [{color: '#17263c'}],
+            featureType: 'water',
+            elementType: 'geometry',
+            stylers: [{ color: '#17263c' }],
         },
         {
-          featureType: 'water',
-          elementType: 'labels.text.fill',
-          stylers: [{color: '#515c6d'}],
+            featureType: 'water',
+            elementType: 'labels.text.fill',
+            stylers: [{ color: '#515c6d' }],
         },
         {
-          featureType: 'water',
-          elementType: 'labels.text.stroke',
-          stylers: [{color: '#17263c'}],
+            featureType: 'water',
+            elementType: 'labels.text.stroke',
+            stylers: [{ color: '#17263c' }],
         },
-      ];
+    ];
 
     const toggleModal = () => {
         setModalVisible(!isModalVisible);
@@ -126,265 +128,304 @@ const HomeScreen = ({ navigation }) => {
     }
 
     return (
-        <SafeAreaView style={styles.safearea}>
-            <Modal
-                animationType="slide"
-                visible={isModalVisible}
-                onRequestClose={toggleModal}
-            >
-                <View style={{ flex: 1, width: dw / 1.15, backgroundColor: "#C8C8C8" }}>
+        <View style={{ flex: 1, height: "100%", width: "100%", backgroundColor: "red" }}>
+            <MapView
+                style={{ flex: 1, height: "100%", width: "100%", backgroundColor: "red" }}
+                initialRegion={{
+                    latitude: 22.719568,
+                    longitude: 75.857727,
+                    latitudeDelta: 0.0422,
+                    longitudeDelta: 0.0421,
+                }}
+                showsUserLocation={false}
+                provider={MapView.PROVIDER_GOOGLE}    >
 
-                    <TouchableOpacity
-                        onPress={toggleModal}
-                        style={{ alignSelf: 'flex-start' }}>
-                        <Text style={{ textAlign: 'right', color: "#000", padding: 10, fontWeight: 'bold', fontSize: 15 }}>X</Text>
-                    </TouchableOpacity>
-                </View>
-            </Modal>
+                <Marker
+                    draggable
+                    coordinate={{
+                        latitude: 22.719568,
+                        longitude: 75.857727,
+                    }}
+                    onDragEnd={
+                        (e) => alert(JSON.stringify(e.nativeEvent.coordinate))
+                    }
+                    title={'Test Marker'}
+                    description={'This is a description of the marker'}
+                >
+                    <Image source={require('../../assets/mycar.png')}
+                        style={{ width: 50, height: 50, }}></Image>
+                </Marker>
+            </MapView>
+        </View >
 
-            <Modal
-                animationType="slide"
-                transparent={true}
-                visible={isModalVisible2}
-                onRequestClose={toggleModal2}
-            >
-                <View
-                    style={{
-                        //flex: 1,
-                        bottom: 0,
-                        position: 'absolute',
-                        //height: dh / 2.9,
-                        width: dw / 1,
-                        backgroundColor: "#FBFCFD",
-                        borderTopLeftRadius: 10,
-                        borderTopRightRadius: 10,
-                        elevation: 13,
-                    }}>
+        // <SafeAreaView style={styles.container}>
 
-                    <TouchableOpacity
-                        onPress={toggleModal2}
-                        style={{ alignSelf: 'flex-end' }}>
-                        <Text
-                            style={{
-                                textAlign: 'right',
-                                color: "#000",
-                                paddingVertical: 5,
-                                paddingHorizontal: 8,
-                                fontSize: 20,
-                            }}>
-                            X
-                        </Text>
-                    </TouchableOpacity>
+        //     <Modal
+        //         animationType="slide"
+        //         visible={isModalVisible}
+        //         onRequestClose={toggleModal}
+        //     >
+        //         <View style={{ flex: 1, width: dw / 1.15, backgroundColor: "#C8C8C8" }}>
 
-                    <View style={styles.assistanceCnt}>
-                        <Text style={{ fontWeight: 'bold' }}>Do you need special assistance?{" "}{" "}</Text>
-                        <TouchableOpacity onPress={()=>{
-                            setModalVisible2(!isModalVisible2)
-                            setModalVisible3(!isModalVisible3)
-                        }}>
-                            <Text style={{ textDecorationLine: 'underline', fontWeight: 'bold' }}>Click here</Text>
-                        </TouchableOpacity>
-                    </View>
+        //             <TouchableOpacity
+        //                 onPress={toggleModal}
+        //                 style={{ alignSelf: 'flex-start' }}>
+        //                 <Text style={{ textAlign: 'right', color: "#000", padding: 10, fontWeight: 'bold', fontSize: 15 }}>X</Text>
+        //             </TouchableOpacity>
+        //         </View>
+        //     </Modal>
 
-                    <View style={styles.btnOptionM_Cnt}>
-                        <TouchableOpacity
-                            style={styles.btnOptionCnt}>
-                            <Text>Hospital</Text>
-                            <Text>Visit</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            style={styles.btnOptionCnt}>
-                            <Text>Assistance</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            style={styles.btnOptionCnt}>
-                            <Text>Wheel</Text>
-                            <Text>Chair</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            style={styles.btnOptionCnt}>
-                            <Text>Book</Text>
-                            <Text>Now</Text>
-                        </TouchableOpacity>
+        //     <Modal
+        //         animationType="slide"
+        //         transparent={true}
+        //         visible={isModalVisible2}
+        //         onRequestClose={toggleModal2}
+        //     >
+        //         <View
+        //             style={{
+        //                 //flex: 1,
+        //                 bottom: 0,
+        //                 position: 'absolute',
+        //                 //height: dh / 2.9,
+        //                 width: dw / 1,
+        //                 backgroundColor: "#FBFCFD",
+        //                 borderTopLeftRadius: 10,
+        //                 borderTopRightRadius: 10,
+        //                 elevation: 13,
+        //             }}>
 
-                    </View>
-                    <TouchableOpacity
-                        style={styles.logInBtnStyl}>
-                        <Text style={styles.txBtn}>
-                            Search
-                        </Text>
-                    </TouchableOpacity>
-                    
-                </View>
-            </Modal>
-            <Modal
-                animationType="slide"
-                transparent={true}
-                visible={isModalVisible3}
-                onRequestClose={toggleModal3}
-            >
-                <View
-                    style={{
-                        //flex: 1,
-                        bottom: 0,
-                        position: 'absolute',
-                        //height: dh / 2.9,
-                        width: dw / 1,
-                        backgroundColor: "#FBFCFD",
-                        borderTopLeftRadius: 10,
-                        borderTopRightRadius: 10,
-                        elevation: 13,
-                    }}>
+        //             <TouchableOpacity
+        //                 onPress={toggleModal2}
+        //                 style={{ alignSelf: 'flex-end' }}>
+        //                 <Text
+        //                     style={{
+        //                         textAlign: 'right',
+        //                         color: "#000",
+        //                         paddingVertical: 5,
+        //                         paddingHorizontal: 8,
+        //                         fontSize: 20,
+        //                     }}>
+        //                     X
+        //                 </Text>
+        //             </TouchableOpacity>
 
-                    <TouchableOpacity
-                        onPress={toggleModal3}
-                        style={{ alignSelf: 'flex-end' }}>
-                        <Text
-                            style={{
-                                textAlign: 'right',
-                                color: "#000",
-                                paddingVertical: 5,
-                                paddingHorizontal: 8,
-                                fontSize: 20,
-                            }}>
-                            X
-                        </Text>
-                    </TouchableOpacity>
+        //             <View style={styles.assistanceCnt}>
+        //                 <Text style={{ fontWeight: 'bold' }}>Do you need special assistance?{" "}{" "}</Text>
+        //                 <TouchableOpacity onPress={() => {
+        //                     setModalVisible2(!isModalVisible2)
+        //                     setModalVisible3(!isModalVisible3)
+        //                 }}>
+        //                     <Text style={{ textDecorationLine: 'underline', fontWeight: 'bold' }}>Click here</Text>
+        //                 </TouchableOpacity>
+        //             </View>
 
-                    <View style={{ width: dw / 1.08,marginBottom:15, alignSelf: 'center' }}>
-                        <Text style={{
-                            fontWeight: 'bold',
-                            fontSize: 18
-                        }}>
-                            Any special assistance</Text>
-                    </View>
+        //             <View style={styles.btnOptionM_Cnt}>
+        //                 <TouchableOpacity
+        //                     style={styles.btnOptionCnt}>
+        //                     <Text>Hospital</Text>
+        //                     <Text>Visit</Text>
+        //                 </TouchableOpacity>
+        //                 <TouchableOpacity
+        //                     style={styles.btnOptionCnt}>
+        //                     <Text>Assistance</Text>
+        //                 </TouchableOpacity>
+        //                 <TouchableOpacity
+        //                     style={styles.btnOptionCnt}>
+        //                     <Text>Wheel</Text>
+        //                     <Text>Chair</Text>
+        //                 </TouchableOpacity>
+        //                 <TouchableOpacity
+        //                     style={styles.btnOptionCnt}>
+        //                     <Text>Book</Text>
+        //                     <Text>Now</Text>
+        //                 </TouchableOpacity>
 
-                        <View style={styles.btnOptionM_Cnt}>
-                            <TouchableOpacity
-                                style={styles.btnOptionCnt}>
-                                <Text>Hospital</Text>
-                                <Text>Visit</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity
-                                style={styles.btnOptionCnt}>
-                                <Text>Assistance</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity
-                                style={styles.btnOptionCnt}>
-                                <Text>Wheel</Text>
-                                <Text>Chair</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity
-                                style={styles.btnOptionCnt}>
-                                <Text>Book</Text>
-                                <Text>Now</Text>
-                            </TouchableOpacity>
-    
-                        </View>
-                    
+        //             </View>
+        //             <TouchableOpacity
+        //                 style={styles.logInBtnStyl}>
+        //                 <Text style={styles.txBtn}>
+        //                     Search
+        //                 </Text>
+        //             </TouchableOpacity>
 
-                    <View style={{ width: dw / 1.08,marginTop:15, alignSelf: 'center' }}>
-                        <Text style={{
-                            fontWeight: 'bold',
-                            fontSize: 18
-                        }}>
-                            Suggested Rides
-                            </Text>
-                    </View>
+        //         </View>
+        //     </Modal>
+        //     <Modal
+        //         animationType="slide"
+        //         transparent={true}
+        //         visible={isModalVisible3}
+        //         onRequestClose={toggleModal3}
+        //     >
+        //         <View
+        //             style={{
+        //                 //flex: 1,
+        //                 bottom: 0,
+        //                 position: 'absolute',
+        //                 //height: dh / 2.9,
+        //                 width: dw / 1,
+        //                 backgroundColor: "#FBFCFD",
+        //                 borderTopLeftRadius: 10,
+        //                 borderTopRightRadius: 10,
+        //                 elevation: 13,
+        //             }}>
 
-                    <TouchableOpacity 
-                    style={{
-                        borderWidth:1,
-                        borderColor:"#F4F4F4",
-                        height:dh/15,
-                        paddingHorizontal:22,
+        //             <TouchableOpacity
+        //                 onPress={toggleModal3}
+        //                 style={{ alignSelf: 'flex-end' }}>
+        //                 <Text
+        //                     style={{
+        //                         textAlign: 'right',
+        //                         color: "#000",
+        //                         paddingVertical: 5,
+        //                         paddingHorizontal: 8,
+        //                         fontSize: 20,
+        //                     }}>
+        //                     X
+        //                 </Text>
+        //             </TouchableOpacity>
 
-                    }}>
-                        <Image style={{height:40,width:50}} source={Icons.carImg}/>
-                        {/* <Text>Comfort line sedan</Text> */}
-                    </TouchableOpacity>
-                    <TouchableOpacity 
-                    style={{
-                        borderWidth:1,
-                        borderColor:"#F4F4F4",
-                        height:dh/15,
-                        paddingHorizontal:22,
+        //             <View style={{ width: dw / 1.08, marginBottom: 15, alignSelf: 'center' }}>
+        //                 <Text style={{
+        //                     fontWeight: 'bold',
+        //                     fontSize: 18
+        //                 }}>
+        //                     Any special assistance</Text>
+        //             </View>
 
-                    }}>
-                        <Image style={{height:40,width:50}} source={Icons.carImg}/>
-                    </TouchableOpacity>
+        //             <View style={styles.btnOptionM_Cnt}>
+        //                 <TouchableOpacity
+        //                     style={styles.btnOptionCnt}>
+        //                     <Text>Hospital</Text>
+        //                     <Text>Visit</Text>
+        //                 </TouchableOpacity>
+        //                 <TouchableOpacity
+        //                     style={styles.btnOptionCnt}>
+        //                     <Text>Assistance</Text>
+        //                 </TouchableOpacity>
+        //                 <TouchableOpacity
+        //                     style={styles.btnOptionCnt}>
+        //                     <Text>Wheel</Text>
+        //                     <Text>Chair</Text>
+        //                 </TouchableOpacity>
+        //                 <TouchableOpacity
+        //                     style={styles.btnOptionCnt}>
+        //                     <Text>Book</Text>
+        //                     <Text>Now</Text>
+        //                 </TouchableOpacity>
 
-                    <TouchableOpacity
-                        style={[styles.logInBtnStyl,{marginVertical: 10}]}>
-                        <Text style={styles.txBtn}>
-                            Book Rides
-                        </Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={[styles.logInBtnStyl,{marginVertical: 10,marginBottom: 20,backgroundColor: "#fff",borderWidth:0.8}]}>
-                        <Text style={[styles.txBtn]}>
-                            Reserve a trip
-                        </Text>
-                    </TouchableOpacity>
-                </View>
-            </Modal>
+        //             </View>
 
 
-            <ScrollView showsVerticalScrollIndicator={false}>
-                <View style={styles.ContainerStl}>
-                    {headerView()}
-                    <View>
-                    <View style={{ 
-                        flex:1,
-                        position:'absolute',
-                        zIndex:1
-                        //paddingHorizontal: 25, 
-                        }}>
-                        <TextInput
-                            placeholder='To'
-                            style={styles.txInputViewStl}
-                        />
-                        <TextInput
-                            placeholder='From'
-                            style={styles.txInputViewStl}
-                        />
+        //             <View style={{ width: dw / 1.08, marginTop: 15, alignSelf: 'center' }}>
+        //                 <Text style={{
+        //                     fontWeight: 'bold',
+        //                     fontSize: 18
+        //                 }}>
+        //                     Suggested Rides
+        //                 </Text>
+        //             </View>
 
-                    </View>
-                    </View>
-<View>
-<MapView
-          style={{height:dh/1.4,width:dw/1}}
-          initialRegion={{
-            latitude: 37.78825,
-            longitude: -122.4324,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
-          }}
-          customMapStyle={mapStyle}>
-          {/* <Marker
-            draggable
-            coordinate={{
-              latitude: 37.78825,
-              longitude: -122.4324,
-            }}
-            onDragEnd={
-              (e) => alert(JSON.stringify(e.nativeEvent.coordinate))
-            }
-            title={'Test Marker'}
-            description={'This is a description of the marker'}
-          /> */}
-        </MapView>
-</View>
-                </View>
-            </ScrollView>
-        </SafeAreaView>
+        //             <TouchableOpacity
+        //                 style={{
+        //                     borderWidth: 1,
+        //                     borderColor: "#F4F4F4",
+        //                     height: dh / 15,
+        //                     paddingHorizontal: 22,
+
+        //                 }}>
+        //                 <Image style={{ height: 40, width: 50 }} source={Icons.carImg} />
+        //                 {/* <Text>Comfort line sedan</Text> */}
+        //             </TouchableOpacity>
+        //             <TouchableOpacity
+        //                 style={{
+        //                     borderWidth: 1,
+        //                     borderColor: "#F4F4F4",
+        //                     height: dh / 15,
+        //                     paddingHorizontal: 22,
+
+        //                 }}>
+        //                 <Image style={{ height: 40, width: 50 }} source={Icons.carImg} />
+        //             </TouchableOpacity>
+
+        //             <TouchableOpacity
+        //                 style={[styles.logInBtnStyl, { marginVertical: 10 }]}>
+        //                 <Text style={styles.txBtn}>
+        //                     Book Rides
+        //                 </Text>
+        //             </TouchableOpacity>
+        //             <TouchableOpacity
+        //                 style={[styles.logInBtnStyl, { marginVertical: 10, marginBottom: 20, backgroundColor: "#fff", borderWidth: 0.8 }]}>
+        //                 <Text style={[styles.txBtn]}>
+        //                     Reserve a trip
+        //                 </Text>
+        //             </TouchableOpacity>
+        //         </View>
+        //     </Modal>
+
+
+        //     <ScrollView showsVerticalScrollIndicator={false}>
+        //         <View style={styles.ContainerStl}>
+        //             {headerView()}
+        //             <View>
+        //                 <View style={{
+        //                     flex: 1,
+        //                     position: 'absolute',
+        //                     zIndex: 1
+        //                     //paddingHorizontal: 25, 
+        //                 }}>
+        //                     <TextInput
+        //                         placeholder='To'
+        //                         style={styles.txInputViewStl}
+        //                     />
+        //                     <TextInput
+        //                         placeholder='From'
+        //                         style={styles.txInputViewStl}
+        //                     />
+
+        //                 </View>
+        //             </View>
+        //             <View style>
+        //                 <MapView
+        //                     style={{flex:1, height: "100%", width:"100%", backgroundColor: "red"}}
+        //                     initialRegion={{
+        //                         latitude: 22.719568,
+        //                         longitude: 75.857727,
+        //                         latitudeDelta: 0.0422,
+        //                         longitudeDelta: 0.0421,
+        //                     }}
+        //                     showsUserLocation={false}
+        //                     provider={MapView.PROVIDER_GOOGLE}    >
+
+        //                     <Marker
+        //                         draggable
+        //                         coordinate={{
+        //                             latitude: 22.719568,
+        //                             longitude: 75.857727,
+        //                         }}
+        //                         onDragEnd={
+        //                             (e) => alert(JSON.stringify(e.nativeEvent.coordinate))
+        //                         }
+        //                         title={'Test Marker'}
+        //                         description={'This is a description of the marker'}
+        //                     >
+        //                     <Image source={require('../../assets/mycar.png')} 
+        //                     style={{width:50,height:50,}}></Image>
+        //                     </Marker>
+        //                 </MapView>
+
+        //             </View>
+
+        //         </View>
+
+        //     </ScrollView>
+        // </SafeAreaView>
     );
 };
 
 const styles = StyleSheet.create({
     safearea: {
         flex: 1,
-        backgroundColor: '#F5F5F5',
+        backgroundColor: '#red',
 
     },
     ContainerStl: {
@@ -453,7 +494,18 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         borderColor: "#E3E6E8",
         borderWidth: 1
-    }
+    },
+
+    container: {
+        flex: 1,
+        backgroundColor: '#black'
+    },
+    map: {
+
+        width: '100%',
+        height: "100%",
+    },
+
 });
 
 export default HomeScreen;

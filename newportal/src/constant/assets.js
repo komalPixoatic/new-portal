@@ -26,7 +26,9 @@ const googlemapstips = require('../../assets/googlemapstips.png')
 const unchecked = require('../../assets/unchecked.png')
 const checkbox = require('../../assets/checkbox.png')
 const send = require('../../assets/send.png')
+const mycar = require('../../assets/mycar.png')
 const car = require('../../assets/car.png')
+
 
 
 
@@ -60,5 +62,6 @@ export default {
    unchecked,
    checkbox,
    send,
+   mycar,
    car
 }
