@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "291627258582",
+    "project_id": "newportal-814bd",
+    "storage_bucket": "newportal-814bd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:291627258582:android:0042095268519b023d2f77",
+        "android_client_info": {
+          "package_name": "com.newportal"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdzA6NW-tRacRm2JM4eBD6EtGXKGFDTos"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

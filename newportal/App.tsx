@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import { View, Image, Dimensions, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -17,6 +17,7 @@ import AccountScreen from './src/Screen/AccountScreen';
 import ActivityScreen from './src/Screen/ActivityScreen';
 import ServicesScreen from './src/Screen/ServicesScreen';
 import Getotp from './src/Screen/Getotp';
+import messaging from '@react-native-firebase/messaging'
 
 const Stack = createNativeStackNavigator();
 
@@ -52,6 +53,7 @@ function MyTabs() {
           name="HomeScreen"
           component={HomeScreen}
           options={{
+            headerShown: true,
             tabBarIcon: ({ focused }) => {
               return <><Image
                 source={focused ? Icons.home2 : Icons.home2Inactive}
@@ -72,7 +74,7 @@ function MyTabs() {
           options={{
             tabBarIcon: ({ focused }) => {
               return <><Image
-                source={focused ? Icons.service1:Icons.service1Inactive}
+                source={focused ? Icons.service1 : Icons.service1Inactive}
                 // source={Icons.service1:Icons.service1Inactive}
                 style={{
                   width: 25,
@@ -91,7 +93,7 @@ function MyTabs() {
           options={{
             tabBarIcon: ({ focused }) => {
               return <><Image
-                source={focused ? Icons.activity2:Icons.activity2Inactive}
+                source={focused ? Icons.activity2 : Icons.activity2Inactive}
                 // source={Icons.activity2:Icons.activity2Inactive}
                 style={{
                   width: 25,
@@ -110,7 +112,7 @@ function MyTabs() {
           options={{
             tabBarIcon: ({ focused }) => {
               return <><Image
-                source={focused ? Icons.user1:Icons.user1Inactive}
+                source={focused ? Icons.user1 : Icons.user1Inactive}
                 // source={Icons.user1:Icons.user1Inactive}
                 style={{
                   width: 25,
@@ -129,6 +131,13 @@ function MyTabs() {
 }
 
 const App = () => {
+  useEffect(() => {
+    getDeviceToken();
+  }, [])
+  const getDeviceToken = async () => {
+    let token = await messaging().getToken();
+    console.log(token);
+  };
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="SplashScreen" screenOptions={{ headerShown: false, animation: 'none', animationDuration: 0, }}>
