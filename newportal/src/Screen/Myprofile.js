@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Icons from '../constant/assets'
-import Myprofile from './Myprofile';
-
-const AccountScreen = ({ navigation }) => {
+import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
+const Myprofile = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.safearea}>
@@ -16,12 +15,12 @@ const AccountScreen = ({ navigation }) => {
           marginTop: 20,
 
         }}>
-          <TouchableOpacity >
+          <TouchableOpacity>
             <Image source={Icons.iconsback}
               style={{ width: 30, height: 25 }} />
           </TouchableOpacity>
           <Text style={styles.Text1}>
-            My Account</Text></View>
+            My Profile</Text></View>
       </View>
       <View style={{ flexDirection: "row" }}>
         <View style={{
@@ -34,12 +33,15 @@ const AccountScreen = ({ navigation }) => {
           marginTop: 50,
           marginLeft: 3,
         }}><Image source={Icons.iconsuser96}
-          style={{ width: 110, height: 110, marginLeft: -6, marginTop: -6 }} /></View>
+
+          style={{ width: 110, height: 110, marginLeft: -6, marginTop: -6 }} />
+          <TouchableOpacity>
+          <Image source={Icons.galleryicon}
+            style={{ width: 30, height:30, position:"absolute",left:77, bottom:1 }} /></TouchableOpacity></View>
         <View><Text style={{ marginTop: 75, marginLeft: 10 }}>User name : jayant solanki </Text>
           <Text style={{ marginTop: 1, marginLeft: 10 }}>Email id : jayantsolanki2cool@gmail.com</Text></View></View>
       {/* <View style={{flexDirection:"row"}}> */}
-      <TouchableOpacity 
-      onPress={() => navigation.push('Myprofile')}>
+      <TouchableOpacity>
         <View style={{
           width: Dimensions.get("screen").width * 1,
           height: 70,
@@ -49,28 +51,28 @@ const AccountScreen = ({ navigation }) => {
           marginTop: 16
         }}>
           <View style={{ flexDirection: "row" }}>
-            <Image source={Icons.iconsuser2} style={{ width: 45, height: 45, marginTop: 10, marginLeft: 10 }} />
-            <Text style={{ marginTop: 24, marginLeft: 10 }}>My Profile</Text>
+            <Image source={Icons.idcard} style={{ width: 45, height: 45, marginTop: 10, marginLeft: 10 }} />
+            <Text style={{ marginTop: 24, marginLeft: 10 }}>jayant solanki</Text>
           </View>
         </View></TouchableOpacity>
       {/* </View> */}
       <TouchableOpacity>
         <View style={{ width: 375, height: 70, borderWidth: 1, borderBottomColor: "#C0C0C0", borderColor: "#FFF" }}>
           <View style={{ flexDirection: "row" }}>
-            <Image source={Icons.iconswallet} style={{ width: 45, height: 45, marginTop: 10, marginLeft: 10 }} />
-            <Text style={{ marginTop: 24, marginLeft: 10 }}>Wallet</Text>
+            <Image source={Icons.email} style={{ width: 45, height: 45, marginTop: 10, marginLeft: 10 }} />
+            <Text style={{ marginTop: 24, marginLeft: 10 }}>jayant_s@pixoatic.com</Text>
           </View></View></TouchableOpacity>
       <TouchableOpacity>
         <View style={{ width: 375, height: 70, borderWidth: 1, borderBottomColor: "#C0C0C0", borderColor: "#FFF" }}>
           <View style={{ flexDirection: "row" }}>
-            <Image source={Icons.iconspassword} style={{ width: 45, height: 45, marginTop: 10, marginLeft: 10 }} />
-            <Text style={{ marginTop: 24, marginLeft: 10 }}>Reset password</Text>
+            <Image source={Icons.phonecall} style={{ width: 45, height: 45, marginTop: 10, marginLeft: 10 }} />
+            <Text style={{ marginTop: 24, marginLeft: 10 }}>+91 7987473653</Text>
           </View></View></TouchableOpacity>
       <TouchableOpacity>
         <View style={{ width: 375, height: 70, borderWidth: 1, borderBottomColor: "#C0C0C0", borderColor: "#FFF" }}>
           <View style={{ flexDirection: "row" }}>
-            <Image source={Icons.iconslogout} style={{ width: 45, height: 45, marginTop: 10, marginLeft: 10 }} />
-            <Text style={{ marginTop: 24, marginLeft: 10 }}>Logout</Text>
+            <Image source={Icons.notification} style={{ width: 45, height: 45, marginTop: 10, marginLeft: 10 }} />
+            <Text style={{ marginTop: 24, marginLeft: 10 }}>Notification</Text>
           </View></View></TouchableOpacity>
 
 
@@ -95,4 +97,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AccountScreen;
+export default Myprofile;

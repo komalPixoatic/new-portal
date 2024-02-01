@@ -17,7 +17,8 @@ import AccountScreen from './src/Screen/AccountScreen';
 import ActivityScreen from './src/Screen/ActivityScreen';
 import ServicesScreen from './src/Screen/ServicesScreen';
 import Getotp from './src/Screen/Getotp';
-import messaging from '@react-native-firebase/messaging'
+import messaging from '@react-native-firebase/messaging';
+import Myprofile from './src/Screen/Myprofile';
 
 const Stack = createNativeStackNavigator();
 
@@ -53,7 +54,7 @@ function MyTabs() {
           name="HomeScreen"
           component={HomeScreen}
           options={{
-            headerShown: true,
+            headerShown: false,
             tabBarIcon: ({ focused }) => {
               return <><Image
                 source={focused ? Icons.home2 : Icons.home2Inactive}
@@ -181,7 +182,10 @@ const App = () => {
           name="WelcomeSceen"
           component={WelcomeSceen}
         />
-
+        <Stack.Screen
+          name="Myprofile"
+          component={Myprofile}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

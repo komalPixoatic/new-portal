@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Image, TextInput, Dimensions, Platform, TouchableOpacity, ScrollView, Button, Modal } from 'react-native';
+import { Text, View, StyleSheet, Image, TextInput, Dimensions, Platform, TouchableOpacity, ScrollView, Button, Modal, FlatList, StatusBarusBar } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+import Header from './Header';
+import iconsuser from '../constant/assets'
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 // import Modal from "react-native-modal";
 
 import Icons from '../constant/assets'
@@ -126,11 +129,74 @@ const HomeScreen = ({ navigation }) => {
             <View style={styles.borderBtm}></View>
         </>
     }
+    const userdata = {
+        name: "jayant solanki",
+        email: "jayant_S@pixoatic.com",
+        profileimage: Icons.iconsuser,
+    }
+    // const images = [
+    //     {
+    //         id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+    //         title: 'First Item',
+    //         src: Icons.TajMahalAgrafeature
+    //     },
+    //     {
+    //         id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+    //         title: 'Second Item',
+    //     },
+    //     {
+    //         id: '58694a0f-3da1-471f-bd96-145571e29d72',
+    //         title: 'Third Item',
+    //     },
+    // ];
+    //type ItemProps = { title: string };
+    const [images, setimages] = useState([
+        { src: Icons.TajMahalAgrafeature, key: '1' },
+        { src: Icons.indiatravel, key: '2' },
+        { src: Icons.BestSnowTouristDestinations, key: '3' },
 
+    ]);
+    const Item = ({ title }) => (
+        <View style={styles.item}>
+            <Text style={styles.title}>{title}</Text>
+        </View>
+    );
     return (
-        <View style={{ flex: 1, height: "100%", width: "100%", backgroundColor: "red" }}>
+        <View style={{ flex: 1, height: "100%", width: "100%", }}>
+            <View style={styles.headercontainer}
+            >
+                <Image source={userdata.profileimage}
+                    style={{ width: 45, height: 45, borderRadius: 99, }}
+                />
+                <Image source={Icons.logo}
+                    style={{ width: 200, height: 45, objectFit: 'contain' }} />
+                <Image source={Icons.iconsfilter}
+                    style={{ width: 35, height: 35, objectFit: 'contain' }} />
+            </View>
+            <View style={{
+                position: 'absolute',
+                zIndex: 5,
+                top: 55,
+                padding: 10,
+                width: '100%',
+                paddingHorizontal: 20,
+                flexDirection: "row",
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+            }}><GooglePlacesAutocomplete
+                    placeholder='Search loactions'
+                    onPress={(data, details = null) => {
+                        // 'details' is provided when fetchDetails = true
+                        console.log(data, details);
+                    }}
+                    query={{
+                        key: 'AIzaSyDetszvD8885M25pPWh37dP1LHkLIfeJ1c',
+                        language: 'en',
+                    }}
+                /></View>
             <MapView
-                style={{ flex: 1, height: "100%", width: "100%", backgroundColor: "red" }}
+                style={{ flex: 1, height: "100%", width: "100%", }}
                 initialRegion={{
                     latitude: 22.719568,
                     longitude: 75.857727,
@@ -155,7 +221,49 @@ const HomeScreen = ({ navigation }) => {
                     <Image source={require('../../assets/mycar.png')}
                         style={{ width: 50, height: 50, }}></Image>
                 </Marker>
+
             </MapView>
+            <View style={{
+                zIndex: 100,
+                position: "absolute",
+                bottom: 0,
+                borderRadius: 10,
+                margin: 5,
+            }}>
+                <FlatList
+                    horizontal={true}
+                    showsHorizontalScrollIndicator={false}
+                    data={images}
+                    renderItem={(item) => (
+                        <View>
+                            <Image source={item.item.src} style={{
+                                width: Dimensions.get("screen").width * 0.9,
+                                height: 200,
+                                borderWidth: 2,
+                                backgroundColor: "#white",
+                                resizeMode: 'contain',
+                                margin: 8,
+                            }} />
+                            <Text style={{
+                                position: "absolute",
+                                zIndex:10,
+                                left:10,
+                                bottom:10,
+                            }}>jayant solanki</Text>
+                        </View>
+                    )}
+                />
+            </View>
+            <SafeAreaView style={styles.container}>
+
+
+                {/* <FlatList
+                    data={DATA}
+                    horizontal={true}
+                    renderItem={({ item }) => <Item title={item.title} />}
+                    keyExtractor={item => item.id} */}
+                {/* /> */}
+            </SafeAreaView>
         </View >
 
         // <SafeAreaView style={styles.container}>
@@ -501,9 +609,33 @@ const styles = StyleSheet.create({
         backgroundColor: '#black'
     },
     map: {
-
         width: '100%',
         height: "100%",
+    },
+    headercontainer: {
+        position: 'absolute',
+        zIndex: 10,
+        padding: 10,
+        width: '100%',
+        paddingHorizontal: 20,
+        flexDirection: "row",
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+
+    },
+    container: {
+        //flex: 1,
+        //marginTop: StatusBarusBar.currentHeight || 0,
+    },
+    item: {
+        backgroundColor: '#f9c2ff',
+        padding: 20,
+        marginVertical: 8,
+        marginHorizontal: 16,
+    },
+    title: {
+        fontSize: 32,
     },
 
 });

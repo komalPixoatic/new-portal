@@ -28,11 +28,25 @@ const checkbox = require('../../assets/checkbox.png')
 const send = require('../../assets/send.png')
 const mycar = require('../../assets/mycar.png')
 const car = require('../../assets/car.png')
-
+const logo = require('../../assets/logo.png')
+const iconsfilter = require('../../assets/iconsfilter.png')
+const indiatravel = require('../../assets/indiatravel.jpeg')
+const TajMahalAgrafeature = require('../../assets/TajMahalAgrafeature.jpeg')
+const BestSnowTouristDestinations = require('../../assets/BestSnowTouristDestinations.jpeg')
+const idcard = require('../../assets/idcard.png')
+const notification = require('../../assets/notification.png')
+const phonecall = require('../../assets/phonecall.png')
+const email = require('../../assets/email.png')
+const galleryicon  = require('../../assets/galleryicon.png')
 
 
 
 export default {
+   galleryicon,
+   idcard,
+   notification,
+   phonecall,
+   email,
    carImg,
    taxi,
    taxi1,
@@ -63,5 +77,10 @@ export default {
    checkbox,
    send,
    mycar,
-   car
+   car,
+   logo,
+   iconsfilter,
+   indiatravel,
+   TajMahalAgrafeature,
+   BestSnowTouristDestinations
 }

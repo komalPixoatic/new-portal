@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 10,
-    height: Platform.OS == 'android' ? dh / 15.5 : dh / 19.5,
+    height: 50,
     marginTop: 30
   },
   txBtn: {
