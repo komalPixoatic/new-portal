@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Image, TextInput, Dimensions, Platform, TouchableOpacity, ScrollView, Button, Modal, FlatList, StatusBarusBar } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+//import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import MapView, { Marker,PROVIDER_GOOGLE} from 'react-native-maps';
 import Header from './Header';
 import iconsuser from '../constant/assets'
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
@@ -12,7 +13,6 @@ const dw = Dimensions.get('window').width;
 const dh = Dimensions.get('window').height;
 
 import LocationPermission from '../navigation/LocationPermission';
-import { FadeIn } from 'react-native-reanimated';
 
 const HomeScreen = ({ navigation }) => {
 
@@ -204,7 +204,9 @@ const HomeScreen = ({ navigation }) => {
                     longitudeDelta: 0.0421,
                 }}
                 showsUserLocation={false}
-                provider={MapView.PROVIDER_GOOGLE}    >
+                provider={MapView.PROVIDER_GOOGLE}  
+                // provider={PROVIDER_GOOGLE} 
+                 >
 
                 <Marker
                     draggable
@@ -240,7 +242,7 @@ const HomeScreen = ({ navigation }) => {
                                 width: Dimensions.get("screen").width * 0.9,
                                 height: 200,
                                 borderWidth: 2,
-                                backgroundColor: "#white",
+                                
                                 resizeMode: 'contain',
                                 margin: 8,
                             }} />
@@ -266,267 +268,7 @@ const HomeScreen = ({ navigation }) => {
             </SafeAreaView>
         </View >
 
-        // <SafeAreaView style={styles.container}>
-
-        //     <Modal
-        //         animationType="slide"
-        //         visible={isModalVisible}
-        //         onRequestClose={toggleModal}
-        //     >
-        //         <View style={{ flex: 1, width: dw / 1.15, backgroundColor: "#C8C8C8" }}>
-
-        //             <TouchableOpacity
-        //                 onPress={toggleModal}
-        //                 style={{ alignSelf: 'flex-start' }}>
-        //                 <Text style={{ textAlign: 'right', color: "#000", padding: 10, fontWeight: 'bold', fontSize: 15 }}>X</Text>
-        //             </TouchableOpacity>
-        //         </View>
-        //     </Modal>
-
-        //     <Modal
-        //         animationType="slide"
-        //         transparent={true}
-        //         visible={isModalVisible2}
-        //         onRequestClose={toggleModal2}
-        //     >
-        //         <View
-        //             style={{
-        //                 //flex: 1,
-        //                 bottom: 0,
-        //                 position: 'absolute',
-        //                 //height: dh / 2.9,
-        //                 width: dw / 1,
-        //                 backgroundColor: "#FBFCFD",
-        //                 borderTopLeftRadius: 10,
-        //                 borderTopRightRadius: 10,
-        //                 elevation: 13,
-        //             }}>
-
-        //             <TouchableOpacity
-        //                 onPress={toggleModal2}
-        //                 style={{ alignSelf: 'flex-end' }}>
-        //                 <Text
-        //                     style={{
-        //                         textAlign: 'right',
-        //                         color: "#000",
-        //                         paddingVertical: 5,
-        //                         paddingHorizontal: 8,
-        //                         fontSize: 20,
-        //                     }}>
-        //                     X
-        //                 </Text>
-        //             </TouchableOpacity>
-
-        //             <View style={styles.assistanceCnt}>
-        //                 <Text style={{ fontWeight: 'bold' }}>Do you need special assistance?{" "}{" "}</Text>
-        //                 <TouchableOpacity onPress={() => {
-        //                     setModalVisible2(!isModalVisible2)
-        //                     setModalVisible3(!isModalVisible3)
-        //                 }}>
-        //                     <Text style={{ textDecorationLine: 'underline', fontWeight: 'bold' }}>Click here</Text>
-        //                 </TouchableOpacity>
-        //             </View>
-
-        //             <View style={styles.btnOptionM_Cnt}>
-        //                 <TouchableOpacity
-        //                     style={styles.btnOptionCnt}>
-        //                     <Text>Hospital</Text>
-        //                     <Text>Visit</Text>
-        //                 </TouchableOpacity>
-        //                 <TouchableOpacity
-        //                     style={styles.btnOptionCnt}>
-        //                     <Text>Assistance</Text>
-        //                 </TouchableOpacity>
-        //                 <TouchableOpacity
-        //                     style={styles.btnOptionCnt}>
-        //                     <Text>Wheel</Text>
-        //                     <Text>Chair</Text>
-        //                 </TouchableOpacity>
-        //                 <TouchableOpacity
-        //                     style={styles.btnOptionCnt}>
-        //                     <Text>Book</Text>
-        //                     <Text>Now</Text>
-        //                 </TouchableOpacity>
-
-        //             </View>
-        //             <TouchableOpacity
-        //                 style={styles.logInBtnStyl}>
-        //                 <Text style={styles.txBtn}>
-        //                     Search
-        //                 </Text>
-        //             </TouchableOpacity>
-
-        //         </View>
-        //     </Modal>
-        //     <Modal
-        //         animationType="slide"
-        //         transparent={true}
-        //         visible={isModalVisible3}
-        //         onRequestClose={toggleModal3}
-        //     >
-        //         <View
-        //             style={{
-        //                 //flex: 1,
-        //                 bottom: 0,
-        //                 position: 'absolute',
-        //                 //height: dh / 2.9,
-        //                 width: dw / 1,
-        //                 backgroundColor: "#FBFCFD",
-        //                 borderTopLeftRadius: 10,
-        //                 borderTopRightRadius: 10,
-        //                 elevation: 13,
-        //             }}>
-
-        //             <TouchableOpacity
-        //                 onPress={toggleModal3}
-        //                 style={{ alignSelf: 'flex-end' }}>
-        //                 <Text
-        //                     style={{
-        //                         textAlign: 'right',
-        //                         color: "#000",
-        //                         paddingVertical: 5,
-        //                         paddingHorizontal: 8,
-        //                         fontSize: 20,
-        //                     }}>
-        //                     X
-        //                 </Text>
-        //             </TouchableOpacity>
-
-        //             <View style={{ width: dw / 1.08, marginBottom: 15, alignSelf: 'center' }}>
-        //                 <Text style={{
-        //                     fontWeight: 'bold',
-        //                     fontSize: 18
-        //                 }}>
-        //                     Any special assistance</Text>
-        //             </View>
-
-        //             <View style={styles.btnOptionM_Cnt}>
-        //                 <TouchableOpacity
-        //                     style={styles.btnOptionCnt}>
-        //                     <Text>Hospital</Text>
-        //                     <Text>Visit</Text>
-        //                 </TouchableOpacity>
-        //                 <TouchableOpacity
-        //                     style={styles.btnOptionCnt}>
-        //                     <Text>Assistance</Text>
-        //                 </TouchableOpacity>
-        //                 <TouchableOpacity
-        //                     style={styles.btnOptionCnt}>
-        //                     <Text>Wheel</Text>
-        //                     <Text>Chair</Text>
-        //                 </TouchableOpacity>
-        //                 <TouchableOpacity
-        //                     style={styles.btnOptionCnt}>
-        //                     <Text>Book</Text>
-        //                     <Text>Now</Text>
-        //                 </TouchableOpacity>
-
-        //             </View>
-
-
-        //             <View style={{ width: dw / 1.08, marginTop: 15, alignSelf: 'center' }}>
-        //                 <Text style={{
-        //                     fontWeight: 'bold',
-        //                     fontSize: 18
-        //                 }}>
-        //                     Suggested Rides
-        //                 </Text>
-        //             </View>
-
-        //             <TouchableOpacity
-        //                 style={{
-        //                     borderWidth: 1,
-        //                     borderColor: "#F4F4F4",
-        //                     height: dh / 15,
-        //                     paddingHorizontal: 22,
-
-        //                 }}>
-        //                 <Image style={{ height: 40, width: 50 }} source={Icons.carImg} />
-        //                 {/* <Text>Comfort line sedan</Text> */}
-        //             </TouchableOpacity>
-        //             <TouchableOpacity
-        //                 style={{
-        //                     borderWidth: 1,
-        //                     borderColor: "#F4F4F4",
-        //                     height: dh / 15,
-        //                     paddingHorizontal: 22,
-
-        //                 }}>
-        //                 <Image style={{ height: 40, width: 50 }} source={Icons.carImg} />
-        //             </TouchableOpacity>
-
-        //             <TouchableOpacity
-        //                 style={[styles.logInBtnStyl, { marginVertical: 10 }]}>
-        //                 <Text style={styles.txBtn}>
-        //                     Book Rides
-        //                 </Text>
-        //             </TouchableOpacity>
-        //             <TouchableOpacity
-        //                 style={[styles.logInBtnStyl, { marginVertical: 10, marginBottom: 20, backgroundColor: "#fff", borderWidth: 0.8 }]}>
-        //                 <Text style={[styles.txBtn]}>
-        //                     Reserve a trip
-        //                 </Text>
-        //             </TouchableOpacity>
-        //         </View>
-        //     </Modal>
-
-
-        //     <ScrollView showsVerticalScrollIndicator={false}>
-        //         <View style={styles.ContainerStl}>
-        //             {headerView()}
-        //             <View>
-        //                 <View style={{
-        //                     flex: 1,
-        //                     position: 'absolute',
-        //                     zIndex: 1
-        //                     //paddingHorizontal: 25, 
-        //                 }}>
-        //                     <TextInput
-        //                         placeholder='To'
-        //                         style={styles.txInputViewStl}
-        //                     />
-        //                     <TextInput
-        //                         placeholder='From'
-        //                         style={styles.txInputViewStl}
-        //                     />
-
-        //                 </View>
-        //             </View>
-        //             <View style>
-        //                 <MapView
-        //                     style={{flex:1, height: "100%", width:"100%", backgroundColor: "red"}}
-        //                     initialRegion={{
-        //                         latitude: 22.719568,
-        //                         longitude: 75.857727,
-        //                         latitudeDelta: 0.0422,
-        //                         longitudeDelta: 0.0421,
-        //                     }}
-        //                     showsUserLocation={false}
-        //                     provider={MapView.PROVIDER_GOOGLE}    >
-
-        //                     <Marker
-        //                         draggable
-        //                         coordinate={{
-        //                             latitude: 22.719568,
-        //                             longitude: 75.857727,
-        //                         }}
-        //                         onDragEnd={
-        //                             (e) => alert(JSON.stringify(e.nativeEvent.coordinate))
-        //                         }
-        //                         title={'Test Marker'}
-        //                         description={'This is a description of the marker'}
-        //                     >
-        //                     <Image source={require('../../assets/mycar.png')} 
-        //                     style={{width:50,height:50,}}></Image>
-        //                     </Marker>
-        //                 </MapView>
-
-        //             </View>
-
-        //         </View>
-
-        //     </ScrollView>
-        // </SafeAreaView>
+        
     );
 };
 

@@ -186,6 +186,10 @@ const App = () => {
           name="Myprofile"
           component={Myprofile}
         />
+        <Stack.Screen
+          name="AccountScreen"
+          component={AccountScreen}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
