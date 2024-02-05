@@ -31,22 +31,22 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFFFFF'
     },
     text: {
-        marginTop: '550',
+        //marginTop: '550',
         color: '#000000',
         fontSize: 16,
         fontWeight: 'bold',
         // textAlign: 'left',
-        width: '375',
+        //width: '375',
 
     },
 
     text1: {
-        marginTop: '550',
+        //marginTop: '550',
         color: '#9A9A9A',
         fontSize: 16,
         // fontWeight: 'bold',
         // textAlign: 'left',
-        width: '375',
+        //width: '375',
         padding: 30
 
     },
@@ -85,8 +85,6 @@ const styles = StyleSheet.create({
 
 export default class SwiperComponent extends Component {
     render() {
-        const tx1 =
-            ``
         return (
             <View style={{ flex: 1, backgroundColor: "#fff" }}>
                 <Swiper style={styles.wrapper}

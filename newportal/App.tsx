@@ -17,6 +17,7 @@ import AccountScreen from './src/Screen/AccountScreen';
 import ActivityScreen from './src/Screen/ActivityScreen';
 import ServicesScreen from './src/Screen/ServicesScreen';
 import Getotp from './src/Screen/Getotp';
+import Myprofile from './src/Screen/Myprofile';
 
 const Stack = createNativeStackNavigator();
 
@@ -171,6 +172,10 @@ const App = () => {
         <Stack.Screen
           name="WelcomeSceen"
           component={WelcomeSceen}
+        />
+        <Stack.Screen
+          name="Myprofile"
+          component={Myprofile}
         />
 
       </Stack.Navigator>
