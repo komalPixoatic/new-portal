@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Image, TextInput, Dimensions, Platform, TouchableOpacity, ScrollView, Button, Modal, FlatList, StatusBarusBar } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-//import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import MapView, { Marker,PROVIDER_GOOGLE} from 'react-native-maps';
 import Header from './Header';
 import iconsuser from '../constant/assets'
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
-// import Modal from "react-native-modal";
+//import Modal from "react-native-modal";
 
 import Icons from '../constant/assets'
 const dw = Dimensions.get('window').width;
@@ -191,7 +190,7 @@ const HomeScreen = ({ navigation }) => {
                         console.log(data, details);
                     }}
                     query={{
-                        key: 'AIzaSyDetszvD8885M25pPWh37dP1LHkLIfeJ1c',
+                        key: '',
                         language: 'en',
                     }}
                 /></View>
@@ -383,3 +382,4 @@ const styles = StyleSheet.create({
 });
 
 export default HomeScreen;
+

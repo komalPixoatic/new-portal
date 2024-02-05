@@ -38,11 +38,14 @@ const notification = require('../../assets/notification.png')
 const phonecall = require('../../assets/phonecall.png')
 const email = require('../../assets/email.png')
 const galleryicon  = require('../../assets/galleryicon.png')
+const gender  = require('../../assets/gender.png')
+
 
 
 
 export default {
    galleryicon,
+   gender,
    idcard,
    notification,
    phonecall,

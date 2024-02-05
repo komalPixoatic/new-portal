@@ -30,10 +30,11 @@ end
 # end
 target 'newportal' do
   use_modular_headers!
-  pod 'RealmSwift'
+  
+  # pod 'RealmSwift'
   config = use_native_modules!
-  pod 'RealmSwift', '~> 3.17', :modular_headers => true
-  pod 'Realm', '~> 3.17', :modular_headers => true
+  # pod 'RealmSwift', '~> 3.17', :modular_headers => true
+  # pod 'Realm', '~> 3.17', :modular_headers => true
   use_react_native!(
     :path => config[:reactNativePath],
     # Enables Flipper.

@@ -31,22 +31,22 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFFFFF'
     },
     text: {
-        marginTop: '550',
+        //marginTop: '550%',
         color: '#000000',
         fontSize: 16,
         fontWeight: 'bold',
-        // textAlign: 'left',
-        width: '375',
+        //textAlign: 'left',
+        //width: '375',
 
     },
 
     text1: {
-        marginTop: '550',
+        //marginTop: '550',
         color: '#9A9A9A',
         fontSize: 16,
         // fontWeight: 'bold',
         // textAlign: 'left',
-        width: '375',
+        //width: '375',
         padding: 30
 
     },
@@ -56,18 +56,18 @@ const styles = StyleSheet.create({
     },
     button1: {
         marginTop: 0,
-        width: dw/1.15,
+        width: dw / 1.15,
         height: 50,
         backgroundColor: "#FFD65B",
         justifyContent: "center",
         borderRadius: 10,
         //marginLeft: 25,
-        
+
 
     },
     button2: {
         marginTop: 25,
-        width: dw/1.15,
+        width: dw / 1.15,
         height: 50,
         backgroundColor: "#FFF",
         justifyContent: "center",
@@ -113,13 +113,23 @@ export default class SwiperComponent extends Component {
                     </View>
                 </Swiper>
 
-                <View style={{ bottom: 100, position: "absolute", backgroundColor: "#FFF" ,alignSelf:'center'}}>
+                <View style={{
+                    bottom: 100,
+                    position: "absolute",
+                    backgroundColor: "#FFF",
+                    alignSelf: 'center'
+                }}>
 
-                <TouchableOpacity style={styles.button1}><Text style={{ alignSelf: "center", fontWeight: "bold" }}>Next</Text></TouchableOpacity>
+                    <TouchableOpacity style={styles.button1}>
+                        <Text style={{
+                            alignSelf: "center",
+                            fontWeight: "bold"
+                        }}>Next</Text>
+                    </TouchableOpacity>
 
                     <TouchableOpacity
-                    onPress={()=>this.props.navigation.navigate("WelcomeSceen")}
-                    style={styles.button2}>
+                        onPress={() => this.props.navigation.navigate("WelcomeSceen")}
+                        style={styles.button2}>
                         <Text style={styles.skiptext}>Skip</Text>
                     </TouchableOpacity>
                 </View>

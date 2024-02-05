@@ -1,5 +1,5 @@
 import React, { Component, useEffect } from 'react';
-import { View, Image, Dimensions, Text } from 'react-native';
+import { View, Image, Dimensions, Text, Platform } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Icons from './src/constant/assets'
@@ -133,7 +133,9 @@ function MyTabs() {
 
 const App = () => {
   useEffect(() => {
+    if(Platform.OS=='android'){
     getDeviceToken();
+    }
   }, [])
   const getDeviceToken = async () => {
     let token = await messaging().getToken();

@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Icons from '../constant/assets'
@@ -16,7 +16,7 @@ const AccountScreen = ({ navigation }) => {
           marginTop: 20,
 
         }}>
-          <TouchableOpacity >
+          <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')} >
             <Image source={Icons.iconsback}
               style={{ width: 30, height: 25 }} />
           </TouchableOpacity>
@@ -41,28 +41,28 @@ const AccountScreen = ({ navigation }) => {
         </View>
       </View>
       <TouchableOpacity onPress={() => navigation.navigate('Myprofile')}>
-      <View style={{
-        width: Dimensions.get("screen").width * 1,
-        height: 70,
-        borderWidth: 1,
-        borderBottomColor: "#C0C0C0",
-        borderColor: "#FFF",
-        marginTop: 16
-      }}>
-        <View style={{ flexDirection: "row" }}>
-          <Image source={Icons.iconsuser2} style={{
-            width: 45,
-            height: 45,
-            marginTop: 10,
-            marginLeft: 10,
-          }} />
-          <Text style={{
-            marginTop: 24,
-            marginLeft: 10
-          }}>My Profile</Text>
+        <View style={{
+          width: Dimensions.get("screen").width * 1,
+          height: 70,
+          borderWidth: 1,
+          borderBottomColor: "#C0C0C0",
+          borderColor: "#FFF",
+          marginTop: 16
+        }}>
+          <View style={{ flexDirection: "row" }}>
+            <Image source={Icons.iconsuser2} style={{
+              width: 45,
+              height: 45,
+              marginTop: 10,
+              marginLeft: 10,
+            }} />
+            <Text style={{
+              marginTop: 24,
+              marginLeft: 10
+            }}>My Profile</Text>
+          </View>
         </View>
-        </View>
-        </TouchableOpacity>
+      </TouchableOpacity>
       <TouchableOpacity>
         <View style={{
           width: Dimensions.get("screen").width * 1,
@@ -95,8 +95,8 @@ const AccountScreen = ({ navigation }) => {
               marginLeft: 10
             }}>Reset password</Text>
           </View>
-          </View>
-          </TouchableOpacity>
+        </View>
+      </TouchableOpacity>
       <TouchableOpacity>
         <View style={{
           width: Dimensions.get("screen").width * 1,
@@ -114,10 +114,8 @@ const AccountScreen = ({ navigation }) => {
             }} />
             <Text style={{ marginTop: 24, marginLeft: 10 }}>Logout</Text>
           </View>
-          </View>
-          </TouchableOpacity>
-
-
+        </View>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };
@@ -125,7 +123,7 @@ const AccountScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   safearea: {
     width: Dimensions.get("screen").width * 1,
-    // height: Dimensions.get("screen").width * 0.55,
+    height: Dimensions.get("screen").width * 0.52,
     //justifyContent: 'center',
     //alignItems: 'center',
     backgroundColor: '#FFD65B',

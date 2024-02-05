@@ -68,7 +68,7 @@ const Myprofile = ({ navigation }) => {
           borderWidth: 1,
           borderBottomColor: "#C0C0C0",
           borderColor: "#FFF",
-          marginTop: 16
+          marginTop: 30
         }} onPress={() => setcheckname(!checkname)}>
           <View style={{ flexDirection: "row" }}>
             <Image source={Icons.idcard} style={{ width: 45, height: 45, marginTop: 10, marginLeft: 10 }} />
@@ -81,7 +81,12 @@ const Myprofile = ({ navigation }) => {
       </TouchableOpacity>
 
       <TouchableOpacity>
-        <View style={{ width: 375, height: 70, borderWidth: 1, borderBottomColor: "#C0C0C0", borderColor: "#FFF" }}>
+        <View style={{ 
+          width: Dimensions.get("screen").width * 1,
+          height: 70, 
+          borderWidth: 1, 
+          borderBottomColor: "#C0C0C0", 
+          borderColor: "#FFF" }}>
           <View style={{ flexDirection: "row" }}>
             <Image source={Icons.email} style={{ width: 45, height: 45, marginTop: 10, marginLeft: 10 }} />
             {checkemail ? <Text style={{ marginTop: 24, marginLeft: 10 }}>jayant_s@pixoatic.com</Text> :
@@ -93,7 +98,12 @@ const Myprofile = ({ navigation }) => {
           </View>
           </TouchableOpacity>
       <TouchableOpacity>
-        <View style={{ width: 375, height: 70, borderWidth: 1, borderBottomColor: "#C0C0C0", borderColor: "#FFF" }}>
+        <View style={{ 
+          width: Dimensions.get("screen").width * 1, 
+          height: 70, 
+          borderWidth: 1, 
+          borderBottomColor: "#C0C0C0", 
+          borderColor: "#FFF" }}>
           <View style={{ flexDirection: "row" }}>
             <Image source={Icons.phonecall} style={{ width: 45, height: 45, marginTop: 10, marginLeft: 10 }} />
             <Text style={{ marginTop: 24, marginLeft: 10 }}>+91 7987473653</Text>
@@ -102,7 +112,24 @@ const Myprofile = ({ navigation }) => {
           </View>
           </TouchableOpacity>
       <TouchableOpacity>
-        <View style={{ width: 375, height: 70, borderWidth: 1, borderBottomColor: "#C0C0C0", borderColor: "#FFF" }}>
+        <View style={{ 
+          width: Dimensions.get("screen").width * 1, 
+          height: 70, 
+          borderWidth: 1, 
+          borderBottomColor: "#C0C0C0", 
+          borderColor: "#FFF" }}>
+          <View style={{ flexDirection: "row" }}>
+            <Image source={Icons.gender} style={{ width: 45, height: 45, marginTop: 10, marginLeft: 10 }} />
+            <Text style={{ marginTop: 24, marginLeft: 10 }}>Gender</Text>
+          </View></View></TouchableOpacity>
+
+          <TouchableOpacity>
+        <View style={{ 
+          width: Dimensions.get("screen").width * 1, 
+          height: 70, 
+          borderWidth: 1, 
+          borderBottomColor: "#C0C0C0", 
+          borderColor: "#FFF" }}>
           <View style={{ flexDirection: "row" }}>
             <Image source={Icons.notification} style={{ width: 45, height: 45, marginTop: 10, marginLeft: 10 }} />
             <Text style={{ marginTop: 24, marginLeft: 10 }}>Notification</Text>
