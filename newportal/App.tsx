@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { View, Image, Dimensions, Text } from 'react-native';
+import React, { Component,useEffect } from 'react';
+import { View, Image, Dimensions, Text, Platform } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Icons from './src/constant/assets'
@@ -18,6 +18,7 @@ import ActivityScreen from './src/Screen/ActivityScreen';
 import ServicesScreen from './src/Screen/ServicesScreen';
 import Getotp from './src/Screen/Getotp';
 import Myprofile from './src/Screen/Myprofile';
+import messaging from '@react-native-firebase/messaging'
 
 const Stack = createNativeStackNavigator();
 
@@ -130,6 +131,31 @@ function MyTabs() {
 }
 
 const App = () => {
+  useEffect(() => {
+    getDeviceToken();
+  }, [])
+  const getDeviceToken = async () => {
+    if(Platform.OS=='android'){
+    //   await messaging().registerDeviceForRemoteMessages()
+    let token = await messaging().getToken();
+    console.log("fcm token =>",token);
+    
+    // try {
+    //   await messaging().registerDeviceForRemoteMessages();
+    //   const fcmToken_N = await messaging().getToken();
+    //   if (fcmToken_N) {
+    //     console.log(JSON.stringify(fcmToken_N), '<- new Token');
+    //   }
+    // } catch (error) {
+    //   console.log(error, 'Error in fcmtoken ');
+    // }
+ 
+
+  }
+    else{
+      console.log("fcm token : IOS side comming soon..");
+    }
+  };
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="SplashScreen" screenOptions={{ headerShown: false, animation: 'none', animationDuration: 0, }}>

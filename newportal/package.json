@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@react-native-community/checkbox": "^0.5.17",
+    "@react-native-firebase/app": "^18.8.0",
+    "@react-native-firebase/messaging": "^18.8.0",
     "@react-native-picker/picker": "^2.6.1",
     "@react-navigation/bottom-tabs": "^6.5.11",
     "@react-navigation/drawer": "^6.6.6",
