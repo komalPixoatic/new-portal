@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Image, TextInput, Dimensions, Platform, TouchableOpacity, ScrollView, Button, Modal } from 'react-native';
+import { Text, View, StyleSheet, Image, TextInput, Dimensions, Platform, TouchableOpacity, ScrollView, Button, Modal, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import MapView, { Marker} from 'react-native-maps';
+import MapView, { Marker, PROVIDER_GOOGLE} from 'react-native-maps';
+import Geolocation from '@react-native-community/geolocation';
 // import Modal from "react-native-modal";
 import Icons from '../constant/assets'
 const dw = Dimensions.get('window').width;
@@ -13,13 +14,37 @@ const HomeScreen = ({ navigation }) => {
 
     useEffect(() => {
         LocationPermission()
-        //getCurrentLocation();
+        getCurrentLocation();
     }, []);
+
+    const [currentLocation, setCurrentLocation] = useState(null);
+    const [latitudePar, setlatitudePar] = useState('');
+    const [longitudePar, setlongitudePar] = useState('');
+    
+    const getCurrentLocation = () => {
+        setlatitudePar('')
+                setlongitudePar('')
+        console.log("Logs...")
+        Geolocation.getCurrentPosition(
+            position => {
+                //const { latitude, longitude } = position.coords;
+                ////setCurrentLocation({ latitude, longitude });
+                console.log(position)
+                //console.log("cordinate latitude: ",JSON.stringify(position.coords.latitude))
+               // console.log("cordinate: ",longitude)
+                 //setlatitudePar(latitude)
+                // setlongitudePar(longitude)
+            },
+            error => Alert.alert('Alert',JSON.stringify(error)),
+            { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+        );
+    };
 
 
     const [isModalVisible, setModalVisible] = useState(false);
     const [isModalVisible2, setModalVisible2] = useState(false);
     const [isModalVisible3, setModalVisible3] = useState(false);
+    
 
     const mapStyle = [
         { elementType: 'geometry', stylers: [{ color: '#242f3e' }] },
@@ -126,7 +151,11 @@ const HomeScreen = ({ navigation }) => {
             <View style={styles.borderBtm}></View>
         </>
     }
+    const [showUserLocation, setShowUserLocation] = useState(false);
 
+    const toggleUserLocation = () => {
+        setShowUserLocation(prevState => !prevState);
+    };
     return (
         <SafeAreaView style={styles.safearea}>
             <Modal
@@ -219,6 +248,7 @@ const HomeScreen = ({ navigation }) => {
 
                 </View>
             </Modal>
+            
             <Modal
                 animationType="slide"
                 transparent={true}
@@ -337,7 +367,7 @@ const HomeScreen = ({ navigation }) => {
 
                     {headerView()}
                     <View>
-                        <View style={{
+                        {/* <View style={{
                             position: 'absolute',
                             zIndex: 1,
                             width: dw / 1.2,
@@ -352,24 +382,40 @@ const HomeScreen = ({ navigation }) => {
                                 style={styles.txInputViewStl}
                             />
 
-                        </View>
+                        </View> */}
 
-                        <MapView
+                       {/* {Platform.OS=='android'? */}
+                        <>
+                       <MapView
                             style={{ height: dh / 1.2, width: dw / 1 }}
                             initialRegion={{
-                                latitude: 37.78825,
-                                longitude: -122.4324,
-                                latitudeDelta: 0.0922,
-                                longitudeDelta: 0.0421,
+                                latitude:latitudePar==''? 22.719568:latitudePar,
+                                longitude:longitudePar==''? 75.857727:longitudePar,
+                                // latitude: currentLocation ? currentLocation?.latitude : 22.719568,
+                                // longitude: currentLocation ? currentLocation?.longitude : 75.857727,
+                                latitudeDelta: 0.1,
+                                longitudeDelta: 0.5,
                             }}
                             customMapStyle={mapStyle}
                             showsUserLocation={true}
+                            // showsMyLocationButton={true}
+                            // followsUserLocation={true}
+                            // showsCompass={true}
+                            // scrollEnabled={true}
+                            // zoomEnabled={true}
+                            // pitchEnabled={true}
+                            // rotateEnabled={true}
+                            // provider={PROVIDER_GOOGLE}
                         >
                             <Marker
                                 draggable
                                 coordinate={{
-                                    latitude: 37.78825,
-                                    longitude: -122.4324,
+                                //     latitude: 22.719568,
+                                // longitude: 75.857727,
+                                latitude:latitudePar==''? 22.719568:latitudePar,
+                                longitude:longitudePar==''? 75.857727:longitudePar,
+                                // latitude: currentLocation.latitude,
+                                // longitude: currentLocation.longitude,
                                 }}
                                 onDragEnd={
                                     (e) => alert(JSON.stringify(e.nativeEvent.coordinate))
@@ -377,7 +423,30 @@ const HomeScreen = ({ navigation }) => {
                                 title={'Test Marker'}
                                 description={'This is a description of the marker'}
                             />
+                            <Marker
+                                draggable
+                                coordinate={{
+                                //     latitude: 22.719568,
+                                // longitude: 75.857727,
+                                latitude:24.076836,
+                                longitude:75.069298,
+                                // latitude: currentLocation.latitude,
+                                // longitude: currentLocation.longitude,
+                                }}
+                                onDragEnd={
+                                    (e) => alert(JSON.stringify(e.nativeEvent.coordinate))
+                                }
+                                title={'mds'}
+                                description={'This is a description of the marker'}
+                            />
                         </MapView>
+                        <View style={{ position: 'absolute',bottom:80, zIndex: 1, alignSelf: 'center' }}>
+                        <Button
+                    title={'Find My Location'}
+                    onPress={getCurrentLocation}
+                />
+            </View></>
+                 {/* :null} */}
                     </View>
                 </View>
             </ScrollView>

@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#FFD65B',
+    backgroundColor: '#FFFFFF',
   },
   appLogo: {
     width: 300,
@@ -45,8 +45,10 @@ const styles = StyleSheet.create({
     alignSelf: "center"
   },
   Text1: {
-    fontSize: 35,
-    fontWeight: "bold"
+    fontSize: 30,
+    fontWeight: "500",
+    color:"#000000",
+    marginTop:15
   },
 });
 
