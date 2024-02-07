@@ -18,11 +18,13 @@ import ActivityScreen from './src/Screen/ActivityScreen';
 import ServicesScreen from './src/Screen/ServicesScreen';
 import Getotp from './src/Screen/Getotp';
 import Myprofile from './src/Screen/Myprofile';
-import messaging from '@react-native-firebase/messaging'
+import messaging from '@react-native-firebase/messaging';
+import PushNotification from 'react-native-push-notification';
 
 const Stack = createNativeStackNavigator();
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import foregroundhandler from './src/Screen/ForegroundHandler';
 const Tab = createBottomTabNavigator();
 
 function MyTabs() {
@@ -132,8 +134,45 @@ function MyTabs() {
 
 const App = () => {
   useEffect(() => {
-    getDeviceToken();
+    getDeviceToken()
+    foregroundhandlerFuntion();
   }, [])
+  const foregroundhandlerFuntion = ()=>{
+    if(Platform.OS=='android'){
+      messaging().onMessage(async remoteMessage => {
+        console.log('notification on froground state......', remoteMessage);
+        if(remoteMessage){
+        PushNotification.createChannel(
+          {
+            channelId: 'mychannel', // (required)
+            channelName: 'My channel', // (required)
+            vibrate: true,
+          },
+          created => {
+            PushNotification.localNotification({
+              channelId: 'mychannel',
+              autoCancel: true,
+              bigText: remoteMessage.notification.body,
+              subText: 'Notification',
+              title: remoteMessage.notification.title,
+              message: `Notif ID:`,
+              vibrate: true,
+              vibration: 300,
+              playSound: true,
+              soundName: 'default',
+              ignoreInForeground: false,
+              importance: 'high',
+              invokeApp: true,
+              allowWhileIdle: true,
+              priority: 'high',
+              visibility: 'public',
+            });
+          },
+      )
+        }
+    })
+  }}
+  
   const getDeviceToken = async () => {
     if(Platform.OS=='android'){
     //   await messaging().registerDeviceForRemoteMessages()
