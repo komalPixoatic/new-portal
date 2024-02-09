@@ -5,7 +5,9 @@ import Icons from '../constant/assets'
 
 const SplashScreen = ({ navigation }) => {
   const temp = ()=>{
-    navigation.navigate("slider")
+    navigation.navigate("LoginOptionScreen")
+    // navigation.navigate("slider")
+
   }
   useEffect(() => {
     setTimeout(() => {

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Image, Modal, FlatList, TouchableOpacity, TextInput } from 'react-native';
+import { Text, View, StyleSheet, Image, Modal, FlatList, TouchableOpacity, TextInput, Dimensions } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import PhoneInput from 'react-native-phone-input'
-import Getotp from './Getotp';
+
+const dw = Dimensions.get('window').width;
+const dh = Dimensions.get('window').height;
+
 const ForgotPasswordScreen = ({ navigation }) => {
   const data = [
     {
@@ -2249,32 +2251,29 @@ const ForgotPasswordScreen = ({ navigation }) => {
   ];
   const [modalVisible, setModalVisible] = useState(false);
   const [datas, setData] = useState(data)
-  const [storecountrycode, setstorecountrycode] = useState("")
-  useEffect(() => {
-    //   this.setState({
-    //     pickerData: this.phone.getPickerData()
-    // })
-    // console.log("@@@@ this.phone.getPickerData() ===============", this.phone.getPickerData())
-    // setData(this.phone.getPickerData())
-  }, [])
+  const [storecountrycode, setstorecountrycode] = useState("🇮🇳")
+  const [countrycode, setcountrycode] = useState("91")
+  
+  // useEffect(() => {
+  // }, [])
 
   onPressFlag = () => {
     console.log("@@@@ onPressFlag =======")
     setModalVisible(true)
-    // this.countryPicker.open()
   }
 
-  selectCountry = (country) => {
+  selectCountry = (country, cCode) => {
     console.log("@@@ country ===========", country)
+    console.log("@@@ country c===========", cCode)
     setstorecountrycode(country)
+    setcountrycode(cCode)
     setModalVisible(false)
-    // this.phone.selectCountry(country.iso2)
   }
 
   renderData = (item) => {
     console.log("@@@@ item ==========", item.item)
     return (
-      <TouchableOpacity onPress={() => selectCountry(item.item.attributes.emoji_flag)}>
+      <TouchableOpacity onPress={() => selectCountry(item.item.attributes.emoji_flag, item.item.attributes.country_code)}>
         <Text>{item.item.attributes.emoji_flag} {item.item.attributes.country_code} {item.item.attributes.name}</Text>
       </TouchableOpacity>
     )
@@ -2282,54 +2281,59 @@ const ForgotPasswordScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.safearea}>
       <View>
-        <Text style={styles.Text}>Enter your Mobile Number </Text>
-        <Text style={styles.Text1}>we will share you the verification code</Text>
+        <Text style={styles.Text}>Welcome</Text>
+        <Text style={[styles.Text1, { marginTop: 12, }]}>Enter your phone number to login/</Text>
+        <Text style={styles.Text1}>signup into your account</Text>
       </View>
 
       <View style={styles.container}>
-        {/* <PhoneInput
-          ref={(ref) => { this.phone = ref; }}
-          onPressFlag={this.onPressFlag}
-          initialCountry={'us'}
-          initialValue="13178675309"
-          textProps={{
-            placeholder: 'Enter a phone number...'
-          }}
-        /> */}
-        <TouchableOpacity
-          style={{
-            width: 345,
-            height: 50,
-            borderColor: "#red",
-            borderWidth: 1,
-            flexDirection: "row",
-            alignItems: "center",
-            marginLeft: 15,
-            borderRadius: 5,
-            marginTop: 50,
-            justifyContent: "center"
-          }}
-          onPress={() => onPressFlag()}>
-          <Text style={{ fontSize: 30 }}>{storecountrycode}</Text>
-          <View style={{ width: 1, height: 50, backgroundColor: "#000", marginLeft: 30 }} />
-          <TextInput style={{ width: 220, marginLeft: 10,}}
+        <View style={{
+          height: 50,
+          flexDirection: "row",
+          alignItems: "center",
+          borderRadius: 7,
+          marginTop: 50,
+          marginHorizontal: 19,
+          justifyContent: "center",
+          overflow: 'hidden'
+        }}>
+          <TouchableOpacity
+            style={{
+              width: 75,
+              alignItems: 'center',
+              height: '100%',
+              justifyContent: "center",
+              backgroundColor: "#F8F8F8",
+            }}
+            onPress={() => onPressFlag()}>
+            <Text
+              style={{ fontSize: 30, zIndex: 11 }}
+            >{storecountrycode}</Text>
+          </TouchableOpacity>
+          <View style={{ backgroundColor: "#F8F8F8", justifyContent: 'center', height: '100%' }}>
+            <Text style={{ fontSize: 14, color: '#000' }}>+{countrycode}</Text>
+          </View>
+          <TextInput
+            style={{ flex: 1, color: '#000', backgroundColor: "#F8F8F8", height: '100%', }}
             maxLength={10}
+            keyboardType='numeric'
           >
-
           </TextInput>
+        </View>
+
+        <TouchableOpacity
+          style={{ marginTop: dh / 21, marginBottom: dh / 5 }}>
+          <Text style={[styles.txBtn,{color:'#7B51F1'}]}>
+            Login with password
+          </Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate(Getotp)}>
-          <View style={{
-            width: 345, height: 50, backgroundColor: "#FFD65B", marginTop: 200,
-            //width: dw/1.15,
-            height: 60,
-            backgroundColor: "#FFD65B",
-            justifyContent: "center",
-            borderRadius: 10,
-            alignSelf: "center",
-          }}>
-            <Text style={{ alignSelf: "center", }}>Get otp</Text>
-          </View></TouchableOpacity>
+
+        <TouchableOpacity onPress={() => navigation.navigate("Getotp")}
+          style={styles.btnView}>
+          <Text style={styles.txBtn}>
+            Send verification code
+          </Text>
+        </TouchableOpacity>
 
       </View>
       <Modal
@@ -2354,20 +2358,18 @@ const ForgotPasswordScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   safearea: {
     flex: 1,
-    //justifyContent: 'center',
-    //alignItems: 'center',
     backgroundColor: '#FFFFFF',
   },
   Text: {
     fontWeight: "bold",
-    marginTop: 140,
+    marginTop: 55,
     fontSize: 20,
     marginLeft: 15,
+    color: "#000"
   },
   Text1: {
-    //fontWeight: "bold",
     marginTop: 1,
-    fontSize: 15,
+    fontSize: 14,
     color: "#6D6E70",
     marginLeft: 15,
 
@@ -2382,7 +2384,21 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
     height: 600,
     width: 300,
-  }
+  },
+  btnView: {
+    marginHorizontal: 20,
+    backgroundColor: "#FFD65B",
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 18,
+    height: Platform.OS == 'android' ? dh / 15.5 : dh / 19.5,
+    width: dw / 1.12,
+  },
+  txBtn: {
+    color: "#000",
+    fontSize: 14,
+    alignSelf: 'center'
+  },
 });
 
 export default ForgotPasswordScreen;

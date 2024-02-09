@@ -3,64 +3,58 @@ import { Text, View, StyleSheet, Image, Modal, FlatList, TouchableOpacity, TextI
 import { SafeAreaView } from 'react-native-safe-area-context';
 const dw = Dimensions.get('window').width;
 const dh = Dimensions.get('window').height;
-import OtpInputs from 'react-native-otp-inputs';
 
-const Getotp = ({ navigation }) => {
+const LoginWithEmail = ({ navigation }) => {
 
-  useEffect(() => {
-
-  }, [])
+  // useEffect(() => {
+  // }, [])
 
   return (
     <SafeAreaView style={styles.safearea}>
       <View>
-        <Text style={styles.Text}>What's the code?</Text>
-        <Text style={[styles.Text1, { marginTop: 12, }]}>Type the 4-digit code we just sent to</Text>
-        <Text style={styles.Text1}>+91********3672</Text>
+        <Text style={styles.Text}>Welcome</Text>
+        <Text style={[styles.Text1, { marginTop: 12, }]}>Enter your email to login/signup into</Text>
+        <Text style={styles.Text1}>your account</Text>
       </View>
 
       <View style={styles.container}>
         <View style={{
+          height: 50,
           flexDirection: "row",
           alignItems: "center",
           borderRadius: 7,
           marginTop: 50,
-          width: dw / 1.5,
+          marginHorizontal: 19,
           justifyContent: "center",
-          overflow: 'hidden',
-          alignSelf: 'center'
+          overflow: 'hidden'
         }}>
-          <OtpInputs
-            handleChange={(code) => console.log(code)}
-            numberOfInputs={4}
-            inputContainerStyles={{
-              borderWidth: 2,
-              borderColor: "#F8F8F8",
+          <TextInput
+            style={{
+              flex: 1,
+              color: '#000',
               backgroundColor: "#F8F8F8",
-              width: dw / 8.5,
-              height: dh / 15,
-              borderRadius: 8,
-              alignItems: 'center'
+              height: '100%',
+              paddingLeft:15
             }}
-          />
+            placeholder='Enter your email'
+          >
+          </TextInput>
         </View>
 
-        <View
+        <TouchableOpacity
           style={{ marginTop: dh / 21, marginBottom: dh / 5 }}>
-          <Text style={styles.txBtn}>
-            Didn't recieve it?
-            <Text style={[styles.txBtn, { color: '#7B51F1' }]}>
-              {" "}Resend in 00:59
-            </Text>
-          </Text>
-        </View>
-
-        <TouchableOpacity onPress={() => navigation.navigate("MainComponent")}
-          style={styles.btnView}>
-          <Text style={styles.txBtn}>
-            Verify it now
+          <Text style={[styles.txBtn,{color:'#7B51F1'}]}>
+            Login with password
           </Text>
         </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => navigation.navigate("Getotp")}
+          style={styles.btnView}>
+          <Text style={styles.txBtn}>
+            Send verification code
+          </Text>
+        </TouchableOpacity>
+
       </View>
     </SafeAreaView>
   );
@@ -112,4 +106,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Getotp;
+export default LoginWithEmail;

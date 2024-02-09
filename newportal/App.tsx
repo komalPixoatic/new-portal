@@ -18,6 +18,9 @@ import ActivityScreen from './src/Screen/ActivityScreen';
 import ServicesScreen from './src/Screen/ServicesScreen';
 import Getotp from './src/Screen/Getotp';
 import Myprofile from './src/Screen/Myprofile';
+import LoginOptionScreen from './src/Screen/LoginOptionScreen';
+import LoginWithEmail from './src/Screen/LoginWithEmail';
+
 import messaging from '@react-native-firebase/messaging';
 //import PushNotification from 'react-native-push-notification';
 
@@ -241,6 +244,14 @@ const App = () => {
         <Stack.Screen
           name="Myprofile"
           component={Myprofile}
+        />
+        <Stack.Screen
+          name="LoginOptionScreen"
+          component={LoginOptionScreen}
+        />
+        <Stack.Screen
+          name="LoginWithEmail"
+          component={LoginWithEmail}
         />
 
       </Stack.Navigator>
