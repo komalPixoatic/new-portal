@@ -3,8 +3,12 @@ import { Text, View, StyleSheet, Image, Modal, FlatList, TouchableOpacity, TextI
 import { SafeAreaView } from 'react-native-safe-area-context';
 const dw = Dimensions.get('window').width;
 const dh = Dimensions.get('window').height;
+import Icon from '../constant/assets'
 
 const LoginWithEmail = ({ navigation }) => {
+
+  const [loginwithOTP, setloginwithOTP] = useState(true)
+  const [passSecure, setpassSecure] = useState(false)
 
   // useEffect(() => {
   // }, [])
@@ -34,26 +38,75 @@ const LoginWithEmail = ({ navigation }) => {
               color: '#000',
               backgroundColor: "#F8F8F8",
               height: '100%',
-              paddingLeft:15
+              paddingLeft: 15
             }}
             placeholder='Enter your email'
           >
           </TextInput>
         </View>
+        {loginwithOTP ?
+          null : <View style={{
+            height: 50,
+            flexDirection: "row",
+            alignItems: "center",
+            borderRadius: 7,
+            marginTop: 10,
+            marginHorizontal: 19,
+            justifyContent: "center",
+            overflow: 'hidden',
+            backgroundColor: "#F8F8F8",
+          }}>
+            <TextInput
+            secureTextEntry={passSecure}
+              style={{
+                flex: 1,
+                color: '#000',
+                backgroundColor: "#F8F8F8",
+                height: '100%',
+                paddingLeft: 15
+              }}
+              placeholder='Enter your Password'
+            >
+            </TextInput>
+            <TouchableOpacity
+            onPress={()=>setpassSecure(!passSecure)}
+            style={{justifyContent:'center',height: '100%',paddingHorizontal:15}}>
+          <Image source={Icon.eyeIcon}/>
+          </TouchableOpacity>
+          </View>}
 
-        <TouchableOpacity
+        {loginwithOTP ? <TouchableOpacity
+          onPress={() => setloginwithOTP(false)}
           style={{ marginTop: dh / 21, marginBottom: dh / 5 }}>
-          <Text style={[styles.txBtn,{color:'#7B51F1'}]}>
+          <Text style={[styles.txBtn, { color: '#7B51F1' }]}>
             Login with password
           </Text>
         </TouchableOpacity>
+          :
+          <TouchableOpacity
+            onPress={() => setloginwithOTP(true)}
+            style={{ marginTop: dh / 21, marginBottom: dh / 5 }}>
+            <Text style={[styles.txBtn, { color: '#7B51F1' }]}>
+              Login with OTP
+            </Text>
+          </TouchableOpacity>}
 
+          {loginwithOTP?
         <TouchableOpacity onPress={() => navigation.navigate("Getotp")}
           style={styles.btnView}>
           <Text style={styles.txBtn}>
             Send verification code
           </Text>
         </TouchableOpacity>
+        :
+        <TouchableOpacity
+          style={styles.btnView}>
+          <Text style={styles.txBtn}>
+            Login
+          </Text>
+        </TouchableOpacity>
+        }
+
 
       </View>
     </SafeAreaView>

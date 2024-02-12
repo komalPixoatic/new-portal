@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Image, Modal, FlatList, TouchableOpacity, TextInput, Dimensions } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import Icon from '../constant/assets'
 
 const dw = Dimensions.get('window').width;
 const dh = Dimensions.get('window').height;
@@ -2254,6 +2255,9 @@ const ForgotPasswordScreen = ({ navigation }) => {
   const [storecountrycode, setstorecountrycode] = useState("🇮🇳")
   const [countrycode, setcountrycode] = useState("91")
   
+  const [loginwithOTP, setloginwithOTP] = useState(true)
+  const [passSecure, setpassSecure] = useState(false)
+  
   // useEffect(() => {
   // }, [])
 
@@ -2273,8 +2277,10 @@ const ForgotPasswordScreen = ({ navigation }) => {
   renderData = (item) => {
     console.log("@@@@ item ==========", item.item)
     return (
-      <TouchableOpacity onPress={() => selectCountry(item.item.attributes.emoji_flag, item.item.attributes.country_code)}>
-        <Text>{item.item.attributes.emoji_flag} {item.item.attributes.country_code} {item.item.attributes.name}</Text>
+      <TouchableOpacity 
+      style={{marginVertical:5,paddingVertical:5}}
+      onPress={() => selectCountry(item.item.attributes.emoji_flag, item.item.attributes.country_code)}>
+        <Text style={{fontSize:15}}>{item.item.attributes.emoji_flag}{'  '}{item.item.attributes.country_code} {item.item.attributes.name}</Text>
       </TouchableOpacity>
     )
   }
@@ -2321,19 +2327,68 @@ const ForgotPasswordScreen = ({ navigation }) => {
           </TextInput>
         </View>
 
-        <TouchableOpacity
+        {loginwithOTP?
+        null:<View style={{
+          height: 50,
+          flexDirection: "row",
+          alignItems: "center",
+          borderRadius: 7,
+          marginTop: 10,
+          marginHorizontal: 19,
+          justifyContent: "center",
+          overflow: 'hidden',
+          backgroundColor: "#F8F8F8",
+        }}>
+          <TextInput
+          secureTextEntry={passSecure}
+            style={{
+              flex: 1,
+              color: '#000',
+              backgroundColor: "#F8F8F8",
+              height: '100%',
+              paddingLeft:15
+            }}
+            placeholder='Enter your Password'
+          >
+          </TextInput>
+          <TouchableOpacity
+          onPress={()=>setpassSecure(!passSecure)}
+          style={{justifyContent:'center',height: '100%',paddingHorizontal:15}}>
+          <Image source={Icon.eyeIcon}/>
+          </TouchableOpacity>
+        </View>}
+
+        {loginwithOTP?<TouchableOpacity
+        onPress={()=>setloginwithOTP(false)}
           style={{ marginTop: dh / 21, marginBottom: dh / 5 }}>
           <Text style={[styles.txBtn,{color:'#7B51F1'}]}>
             Login with password
           </Text>
         </TouchableOpacity>
+        :
+        <TouchableOpacity
+        onPress={()=>setloginwithOTP(true)}
+          style={{ marginTop: dh / 21, marginBottom: dh / 5 }}>
+          <Text style={[styles.txBtn,{color:'#7B51F1'}]}>
+            Login with OTP
+          </Text>
+        </TouchableOpacity>}
 
+        {loginwithOTP?
         <TouchableOpacity onPress={() => navigation.navigate("Getotp")}
           style={styles.btnView}>
           <Text style={styles.txBtn}>
             Send verification code
           </Text>
         </TouchableOpacity>
+        :
+        <TouchableOpacity
+          style={styles.btnView}>
+          <Text style={styles.txBtn}>
+            Login
+          </Text>
+        </TouchableOpacity>
+        }
 
       </View>
       <Modal
@@ -2381,9 +2436,10 @@ const styles = StyleSheet.create({
   },
 
   modalView: {
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "#FFF9FF",
     height: 600,
-    width: 300,
+    width:dw/1.05,
+    paddingHorizontal:15
   },
   btnView: {
     marginHorizontal: 20,

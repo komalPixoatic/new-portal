@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Image, Modal, FlatList, TouchableOpacity, TextInput, Dimensions } from 'react-native';
+import { Text, View, StyleSheet, Image, Modal, FlatList, TouchableOpacity, TextInput, Dimensions, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 const dw = Dimensions.get('window').width;
 const dh = Dimensions.get('window').height;
@@ -7,10 +7,30 @@ import OtpInputs from 'react-native-otp-inputs';
 
 const Getotp = ({ navigation }) => {
 
+  const [duration, setDuration] = useState(2 * 60);
+
   useEffect(() => {
+    const timer = setInterval(() => {
+        setDuration(prevDuration => {
+            if (prevDuration <= 0) {
+                clearInterval(timer);
+                return 0;
+            }
+            return prevDuration - 1;
+        });
+    }, 1000);
 
-  }, [])
+    // Cleanup function to clear the interval when the component unmounts
+    return () => clearInterval(timer);
+}, []);
 
+function formatTime(time) {
+    const minutes = Math.floor(time / 60);
+    const seconds = time % 60;
+    return `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+}
+  const PlatformStyl = Platform.OS=='android'?{  width: dw / 8.5,
+      height: dh / 15}:{ padding:17}
   return (
     <SafeAreaView style={styles.safearea}>
       <View>
@@ -33,15 +53,16 @@ const Getotp = ({ navigation }) => {
           <OtpInputs
             handleChange={(code) => console.log(code)}
             numberOfInputs={4}
-            inputContainerStyles={{
-              borderWidth: 2,
-              borderColor: "#F8F8F8",
-              backgroundColor: "#F8F8F8",
-              width: dw / 8.5,
-              height: dh / 15,
+            inputContainerStyles={[{
+               borderWidth: 2,
+               borderColor: "#F8F8F8",
+               backgroundColor: "#F8F8F8",
+              //  width: dw / 8.5,
+              //  height: dh / 15,
+              // padding:20,
               borderRadius: 8,
               alignItems: 'center'
-            }}
+            },PlatformStyl]}
           />
         </View>
 
@@ -49,9 +70,15 @@ const Getotp = ({ navigation }) => {
           style={{ marginTop: dh / 21, marginBottom: dh / 5 }}>
           <Text style={styles.txBtn}>
             Didn't recieve it?
+            {duration==0?
             <Text style={[styles.txBtn, { color: '#7B51F1' }]}>
-              {" "}Resend in 00:59
+              {" "}Resend
             </Text>
+            :
+            <Text style={[styles.txBtn, { color: '#7B51F1' }]}>
+              {" "}Resend in {formatTime(duration)}
+            </Text>
+            }
           </Text>
         </View>
 
