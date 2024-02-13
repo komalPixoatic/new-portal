@@ -37,8 +37,8 @@ const idcard = require('../../assets/idcard.png')
 const notification = require('../../assets/notification.png')
 const phonecall = require('../../assets/phonecall.png')
 const email = require('../../assets/email.png')
-const galleryicon  = require('../../assets/galleryicon.png')
-const eyeIcon  = require('../../assets/eyeIcon.png')
+const galleryicon = require('../../assets/galleryicon.png')
+const eyeIcon = require('../../assets/eyeIcon.png')
 
 const Group257 = require('../../assets/Group257.png')
 const Vector = require('../../assets/Vector.png')
@@ -49,6 +49,15 @@ const one = require('../../assets/one.png')
 const Group313 = require('../../assets/Group313.png')
 const Group314 = require('../../assets/Group314.png')
 const Group311 = require('../../assets/Group311.png')
+
+const HomeA = require('../../assets/HomeA.png')
+const HomeIN = require('../../assets/HomeIN.png')
+const SearchA = require('../../assets/SearchA.png')
+const SearchIN = require('../../assets/SearchIN.png')
+const NotificationA = require('../../assets/NotificationA.png')
+const NotificationIN = require('../../assets/NotificationIN.png')
+const UserA = require('../../assets/UserA.png')
+const UserIN = require('../../assets/UserIN.png')
 
 export default {
    carImg,
@@ -103,4 +112,13 @@ export default {
    Group313,
    Group314,
    Group311,
+
+   HomeA,
+   HomeIN,
+   SearchA,
+   SearchIN,
+   NotificationA,
+   NotificationIN,
+   UserA,
+   UserIN
 }

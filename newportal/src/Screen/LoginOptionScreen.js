@@ -6,10 +6,10 @@ const dw = Dimensions.get('window').width;
 const dh = Dimensions.get('window').height;
 
 const LoginOptionScreen = ({ navigation }) => {
-  return (
+    return (
     <SafeAreaView style={styles.safearea}>
       <View>
-      <TouchableOpacity
+            <TouchableOpacity
       onPress={()=>navigation.navigate("ForgotPasswordScreen")}
           style={styles.logInBtnStyl}>
           <Text style={styles.txBtn}>

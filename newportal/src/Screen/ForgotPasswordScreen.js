@@ -6,6 +6,10 @@ import Icon from '../constant/assets'
 const dw = Dimensions.get('window').width;
 const dh = Dimensions.get('window').height;
 
+import CountryPicker from 'react-native-country-picker-modal'
+import { CountryCode, Country } from '../Screen/utils/types'
+
+
 const ForgotPasswordScreen = ({ navigation }) => {
   const data = [
     {
@@ -2252,35 +2256,52 @@ const ForgotPasswordScreen = ({ navigation }) => {
   ];
   const [modalVisible, setModalVisible] = useState(false);
   const [datas, setData] = useState(data)
-  const [storecountrycode, setstorecountrycode] = useState("🇮🇳")
-  const [countrycode, setcountrycode] = useState("91")
-  
+  // const [storecountrycode, setstorecountrycode] = useState("🇮🇳")
+  // const [countrycode, setcountrycode] = useState("91")
+
   const [loginwithOTP, setloginwithOTP] = useState(true)
   const [passSecure, setpassSecure] = useState(false)
-  
+
   // useEffect(() => {
   // }, [])
 
-  onPressFlag = () => {
-    console.log("@@@@ onPressFlag =======")
-    setModalVisible(true)
+  // onPressFlag = () => {
+  //   console.log("@@@@ onPressFlag =======")
+  //   setModalVisible(true)
+  // }
+
+  // selectCountry = (country, cCode) => {
+  //   console.log("@@@ country ===========", country)
+  //   console.log("@@@ country c===========", cCode)
+  //   setstorecountrycode(country)
+  //   setcountrycode(cCode)
+  //   setModalVisible(false)
+  // }
+
+  const [countryCode, setCountryCode] = useState('IN')
+  const [country, setCountry] = useState(null)
+  const [withCountryNameButton, setWithCountryNameButton] = useState(false)
+  const [withFlag, setWithFlag] = useState(true)
+  const [withEmoji, setWithEmoji] = useState(true)
+  const [withFilter, setWithFilter] = useState(true)
+  const [withAlphaFilter, setWithAlphaFilter] = useState(false)
+  const [withCallingCode, setWithCallingCode] = useState(false)
+  const [countrycodeN, setCountrycodeN] = useState("91")
+  const onSelect = (country) => {
+    setCountryCode(country.cca2)
+    setCountry(country)
+    console.log("Data :", country.callingCode[0])
+    setCountrycodeN(country.callingCode[0])
   }
 
-  selectCountry = (country, cCode) => {
-    console.log("@@@ country ===========", country)
-    console.log("@@@ country c===========", cCode)
-    setstorecountrycode(country)
-    setcountrycode(cCode)
-    setModalVisible(false)
-  }
 
   renderData = (item) => {
     console.log("@@@@ item ==========", item.item)
     return (
-      <TouchableOpacity 
-      style={{marginVertical:5,paddingVertical:5}}
-      onPress={() => selectCountry(item.item.attributes.emoji_flag, item.item.attributes.country_code)}>
-        <Text style={{fontSize:15}}>{item.item.attributes.emoji_flag}{'  '}{item.item.attributes.country_code} {item.item.attributes.name}</Text>
+      <TouchableOpacity
+        style={{ marginVertical: 5, paddingVertical: 5 }}
+        onPress={() => selectCountry(item.item.attributes.emoji_flag, item.item.attributes.country_code)}>
+        <Text style={{ fontSize: 15 }}>{item.item.attributes.emoji_flag}{'  '}{item.item.attributes.country_code} {item.item.attributes.name}</Text>
       </TouchableOpacity>
     )
   }
@@ -2301,9 +2322,9 @@ const ForgotPasswordScreen = ({ navigation }) => {
           marginTop: 50,
           marginHorizontal: 19,
           justifyContent: "center",
-          overflow: 'hidden'
+          overflow: 'hidden',
         }}>
-          <TouchableOpacity
+          {/* <TouchableOpacity
             style={{
               width: 75,
               alignItems: 'center',
@@ -2315,9 +2336,25 @@ const ForgotPasswordScreen = ({ navigation }) => {
             <Text
               style={{ fontSize: 30, zIndex: 11 }}
             >{storecountrycode}</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
+          <View>
+            <CountryPicker
+              containerButtonStyle={{ backgroundColor: "#F8F8F8", alignItems: 'center', justifyContent: 'center', paddingLeft: 23, paddingRight: 8, height: '100%' }}
+              {...{
+                countryCode,
+                withFilter,
+                withFlag,
+                withCountryNameButton,
+                withAlphaFilter,
+                withCallingCode,
+                withEmoji,
+                onSelect,
+              }}
+              visible={false}
+            />
+          </View>
           <View style={{ backgroundColor: "#F8F8F8", justifyContent: 'center', height: '100%' }}>
-            <Text style={{ fontSize: 14, color: '#000' }}>+{countrycode}</Text>
+            <Text style={{ fontSize: 14, color: '#000' }}>+{countrycodeN}</Text>
           </View>
           <TextInput
             style={{ flex: 1, color: '#000', backgroundColor: "#F8F8F8", height: '100%', }}
@@ -2327,67 +2364,67 @@ const ForgotPasswordScreen = ({ navigation }) => {
           </TextInput>
         </View>
 
-        {loginwithOTP?
-        null:<View style={{
-          height: 50,
-          flexDirection: "row",
-          alignItems: "center",
-          borderRadius: 7,
-          marginTop: 10,
-          marginHorizontal: 19,
-          justifyContent: "center",
-          overflow: 'hidden',
-          backgroundColor: "#F8F8F8",
-        }}>
-          <TextInput
-          secureTextEntry={passSecure}
-            style={{
-              flex: 1,
-              color: '#000',
-              backgroundColor: "#F8F8F8",
-              height: '100%',
-              paddingLeft:15
-            }}
-            placeholder='Enter your Password'
-          >
-          </TextInput>
-          <TouchableOpacity
-          onPress={()=>setpassSecure(!passSecure)}
-          style={{justifyContent:'center',height: '100%',paddingHorizontal:15}}>
-          <Image source={Icon.eyeIcon}/>
-          </TouchableOpacity>
-        </View>}
+        {loginwithOTP ?
+          null : <View style={{
+            height: 50,
+            flexDirection: "row",
+            alignItems: "center",
+            borderRadius: 7,
+            marginTop: 10,
+            marginHorizontal: 19,
+            justifyContent: "center",
+            overflow: 'hidden',
+            backgroundColor: "#F8F8F8",
+          }}>
+            <TextInput
+              secureTextEntry={passSecure}
+              style={{
+                flex: 1,
+                color: '#000',
+                backgroundColor: "#F8F8F8",
+                height: '100%',
+                paddingLeft: 15
+              }}
+              placeholder='Enter your Password'
+            >
+            </TextInput>
+            <TouchableOpacity
+              onPress={() => setpassSecure(!passSecure)}
+              style={{ justifyContent: 'center', height: '100%', paddingHorizontal: 15 }}>
+              <Image source={Icon.eyeIcon} />
+            </TouchableOpacity>
+          </View>}
 
-        {loginwithOTP?<TouchableOpacity
-        onPress={()=>setloginwithOTP(false)}
+        {loginwithOTP ? <TouchableOpacity
+          onPress={() => setloginwithOTP(false)}
           style={{ marginTop: dh / 21, marginBottom: dh / 5 }}>
-          <Text style={[styles.txBtn,{color:'#7B51F1'}]}>
+          <Text style={[styles.txBtn, { color: '#7B51F1' }]}>
             Login with password
           </Text>
         </TouchableOpacity>
-        :
-        <TouchableOpacity
-        onPress={()=>setloginwithOTP(true)}
-          style={{ marginTop: dh / 21, marginBottom: dh / 5 }}>
-          <Text style={[styles.txBtn,{color:'#7B51F1'}]}>
-            Login with OTP
-          </Text>
-        </TouchableOpacity>}
+          :
+          <TouchableOpacity
+            onPress={() => setloginwithOTP(true)}
+            style={{ marginTop: dh / 21, marginBottom: dh / 5 }}>
+            <Text style={[styles.txBtn, { color: '#7B51F1' }]}>
+              Login with OTP
+            </Text>
+          </TouchableOpacity>}
 
-        {loginwithOTP?
-        <TouchableOpacity onPress={() => navigation.navigate("Getotp")}
-          style={styles.btnView}>
-          <Text style={styles.txBtn}>
-            Send verification code
-          </Text>
-        </TouchableOpacity>
-        :
-        <TouchableOpacity
-          style={styles.btnView}>
-          <Text style={styles.txBtn}>
-            Login
-          </Text>
-        </TouchableOpacity>
+        {loginwithOTP ?
+          <TouchableOpacity onPress={() => navigation.navigate("Getotp")}
+            style={styles.btnView}>
+            <Text style={styles.txBtn}>
+              Send verification code
+            </Text>
+          </TouchableOpacity>
+          :
+          <TouchableOpacity
+            style={styles.btnView}>
+            <Text style={styles.txBtn}>
+              Login
+            </Text>
+          </TouchableOpacity>
         }
 
       </View>
@@ -2438,8 +2475,8 @@ const styles = StyleSheet.create({
   modalView: {
     backgroundColor: "#FFF9FF",
     height: 600,
-    width:dw/1.05,
-    paddingHorizontal:15
+    width: dw / 1.05,
+    paddingHorizontal: 15
   },
   btnView: {
     marginHorizontal: 20,

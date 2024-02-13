@@ -14,7 +14,7 @@ import ForgotPasswordScreen from './src/Screen/ForgotPasswordScreen';
 import TermsAndConditionScreen from './src/Screen/TermsAndConditionScreen';
 import HomeScreen from './src/Screen/HomeScreen';
 import AccountScreen from './src/Screen/AccountScreen';
-import ActivityScreen from './src/Screen/ActivityScreen';
+import NotificationScreen from './src/Screen/NotificationScreen';
 import ServicesScreen from './src/Screen/ServicesScreen';
 import Getotp from './src/Screen/Getotp';
 import Myprofile from './src/Screen/Myprofile';
@@ -61,14 +61,14 @@ function MyTabs() {
           options={{
             tabBarIcon: ({ focused }) => {
               return <><Image
-                source={focused ? Icons.home2 : Icons.home2Inactive}
+                source={focused ? Icons.HomeA : Icons.HomeIN}
                 style={{
-                  width: 25,
-                  height: 25,
+                  width:focused ?  45:45,
+                  height:focused ?  45:45,
                 }} />
                 {/* {focused ?<><View style={{paddingVertical:3}}></View>
                 <Image source={icons.test}/></>:null} */}
-                <Text>Home</Text>
+                {/* <Text>Home</Text> */}
               </>
             }
           }}
@@ -79,34 +79,34 @@ function MyTabs() {
           options={{
             tabBarIcon: ({ focused }) => {
               return <><Image
-                source={focused ? Icons.service1:Icons.service1Inactive}
+                source={focused ? Icons.SearchA:Icons.SearchIN}
                 // source={Icons.service1:Icons.service1Inactive}
                 style={{
-                  width: 25,
-                  height: 25,
+                  width:focused ?  45:22,
+                  height:focused ?  45:22,
                 }} />
                 {/* {focused ?<><View style={{paddingVertical:3}}></View>
                 <Image source={icons.test}/></>:null} */}
-                <Text>Services</Text>
+                {/* <Text>Services</Text> */}
               </>
             }
           }}
         />
         <Tab.Screen
-          name="ActivityScreen"
-          component={ActivityScreen}
+          name="NotificationScreen"
+          component={NotificationScreen}
           options={{
             tabBarIcon: ({ focused }) => {
               return <><Image
-                source={focused ? Icons.activity2:Icons.activity2Inactive}
+                source={focused ? Icons.NotificationA:Icons.NotificationIN}
                 // source={Icons.activity2:Icons.activity2Inactive}
                 style={{
-                  width: 25,
-                  height: 25,
+                  width:focused ?  42:19,
+                  height:focused ?  42:19,
                 }} />
                 {/* {focused ?<><View style={{paddingVertical:3}}></View>
                 <Image source={icons.test}/></>:null} */}
-                <Text>Activity</Text>
+                {/* <Text>Activity</Text> */}
               </>
             }
           }}
@@ -117,15 +117,15 @@ function MyTabs() {
           options={{
             tabBarIcon: ({ focused }) => {
               return <><Image
-                source={focused ? Icons.user1:Icons.user1Inactive}
+                source={focused ? Icons.UserA:Icons.UserIN}
                 // source={Icons.user1:Icons.user1Inactive}
                 style={{
-                  width: 25,
-                  height: 25,
+                  width:focused ?  42:21,
+                  height:focused ?  42:21,
                 }} />
                 {/* {focused ?<><View style={{paddingVertical:3}}></View>
                 <Image source={icons.test}/></>:null} */}
-                <Text>Account</Text>
+                {/* <Text>Account</Text> */}
               </>
             }
           }}

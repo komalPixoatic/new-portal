@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect, } from 'react';
-import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity,Dimensions } from 'react-native';
+import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity,Dimensions,Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Icons from '../constant/assets'
 const dw = Dimensions.get('window').width;
@@ -8,7 +8,6 @@ const dh = Dimensions.get('window').height;
 
 const HomeScreen = ({ navigation }) => {
     return (
-        <SafeAreaView style={{height:dh/1}}>
         <ScrollView style={styles.safearea}>
             <View style={{paddingHorizontal:20}}>
             <View style={{
@@ -101,10 +100,11 @@ const HomeScreen = ({ navigation }) => {
                 }}></Image>
             <Image source={Icons.offer}
                 style={{
-                    width: 358,
-                    height: 79,
+                    width: dw/1.12,
+                    height: dh/10,
                     alignSelf: "center",
                     marginTop: 14,
+                    
                 }}></Image>
             <Text style={styles.Text3}>
                 Plan your ride</Text>
@@ -117,41 +117,31 @@ const HomeScreen = ({ navigation }) => {
                 }}></Image>
                 </View>
         </ScrollView>
-        </SafeAreaView>
     );
 };
 const styles = StyleSheet.create({
     safearea: {
         flex: 1,
-        //justifyContent: 'center',
-        //alignItems: 'center',
         backgroundColor: '#FFFFFF',
-        //marginBottom:45
-        //height:dh/11
+        marginTop:Platform.OS=='ios'?50:1
     },
     Text1: {
         fontSize: 18,
         fontWeight: "bold",
         color: '#2A2A2A',
         marginTop: 34,
-        //paddingHorizontal: 20,
-        //marginLeft: 10,
     },
     Text2: {
         fontSize: 18,
         fontWeight: "bold",
         color: '#2A2A2A',
         marginTop: 14,
-        // marginLeft: 10,
-        //paddingHorizontal: 20,
     },
     Text3: {
         fontSize: 18,
         fontWeight: "bold",
         color: '#2A2A2A',
         marginTop: 14,
-        // marginLeft: 10,
-        //paddingHorizontal: 20,
     },
 });
 export default HomeScreen;
