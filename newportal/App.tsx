@@ -15,7 +15,7 @@ import TermsAndConditionScreen from './src/Screen/TermsAndConditionScreen';
 import HomeScreen from './src/Screen/HomeScreen';
 import AccountScreen from './src/Screen/AccountScreen';
 import NotificationScreen from './src/Screen/NotificationScreen';
-import ServicesScreen from './src/Screen/ServicesScreen';
+import SearchScreen from './src/Screen/SearchScreen';
 import Getotp from './src/Screen/Getotp';
 import Myprofile from './src/Screen/Myprofile';
 import LoginOptionScreen from './src/Screen/LoginOptionScreen';
@@ -42,7 +42,8 @@ function MyTabs() {
             width: dw / 1,
             alignSelf: 'center',
             //bottom: 20,
-            height: dh / 12,
+            height: dh / 10.8,
+            paddingTop:Platform.OS=='android'?1:15,
             //borderRadius: dh / 50,
             shadowColor: '#000000',
             //elevation:Scale(4),
@@ -74,8 +75,8 @@ function MyTabs() {
           }}
         />
         <Tab.Screen
-          name="ServicesScreen"
-          component={ServicesScreen}
+          name="SearchScreen"
+          component={SearchScreen}
           options={{
             tabBarIcon: ({ focused }) => {
               return <><Image

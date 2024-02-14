@@ -71,7 +71,7 @@ const LoginWithEmail = ({ navigation }) => {
             <TouchableOpacity
             onPress={()=>setpassSecure(!passSecure)}
             style={{justifyContent:'center',height: '100%',paddingHorizontal:15}}>
-          <Image source={Icon.eyeIcon}/>
+          <Image source={!passSecure?Icon.eyeIcon:Icon.eyeIconInactive} />
           </TouchableOpacity>
           </View>}
 

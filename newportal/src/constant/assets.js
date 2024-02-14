@@ -27,7 +27,6 @@ const unchecked = require('../../assets/unchecked.png')
 const checkbox = require('../../assets/checkbox.png')
 const send = require('../../assets/send.png')
 const car = require('../../assets/car.png')
-
 const logo = require('../../assets/logo.png')
 const iconsfilter = require('../../assets/iconsfilter.png')
 const indiatravel = require('../../assets/indiatravel.jpeg')
@@ -39,7 +38,6 @@ const phonecall = require('../../assets/phonecall.png')
 const email = require('../../assets/email.png')
 const galleryicon = require('../../assets/galleryicon.png')
 const eyeIcon = require('../../assets/eyeIcon.png')
-
 const Group257 = require('../../assets/Group257.png')
 const Vector = require('../../assets/Vector.png')
 const Ellipse1 = require('../../assets/Ellipse1.png')
@@ -58,6 +56,12 @@ const NotificationA = require('../../assets/NotificationA.png')
 const NotificationIN = require('../../assets/NotificationIN.png')
 const UserA = require('../../assets/UserA.png')
 const UserIN = require('../../assets/UserIN.png')
+
+const searchIcon = require('../../assets/searchIcon.png')
+const FilterIcon = require('../../assets/FilterIcon.png')
+const leftArrowIcon = require('../../assets/leftArrowIcon.png')
+const eyeIconInactive = require('../../assets/eyeIconInactive.png')
+const rightIcon = require('../../assets/rightIcon.png')
 
 export default {
    carImg,
@@ -90,7 +94,6 @@ export default {
    checkbox,
    send,
    car,
-
    logo,
    iconsfilter,
    indiatravel,
@@ -102,7 +105,6 @@ export default {
    email,
    galleryicon,
    eyeIcon,
-
    Group257,
    Vector,
    Ellipse1,
@@ -120,5 +122,11 @@ export default {
    NotificationA,
    NotificationIN,
    UserA,
-   UserIN
+   UserIN,
+
+   searchIcon,
+   FilterIcon,
+   leftArrowIcon,
+   eyeIconInactive,
+   rightIcon
 }
