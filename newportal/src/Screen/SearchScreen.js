@@ -18,34 +18,25 @@ const SearchScreen = ({ navigation }) => {
     <ScrollView>
       <View style={styles.safearea}>
         <Modal visible={modalVisible}>
-          <View style={{ flex: 1, backgroundColor: '#FFFFFF' }}>
-            <View style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              width: dw / 1.12,
-              alignSelf: 'center',
-              marginTop: 25,
-              marginBottom: 10
-            }}>
+          <View style={{ flex: 1, backgroundColor: '#FFFFFF', paddingTop: Platform.OS == 'ios' ? 50 : 1, }}>
+            <View style={styles.modelHeaderView}>
               <TouchableOpacity
                 style={{ flexDirection: 'row', alignItems: 'center', }}
                 onPress={() => setModalVisible(false)}>
                 <Image
                   style={{ height: 15, width: 8 }}
                   source={Icons.leftArrowIcon} />
-                <Text style={{ fontSize: 16, fontWeight: '400', color: '#393939', marginHorizontal: 13 }}>Filter</Text>
+                <Text style={{ fontSize: 16, fontWeight: '400', color: '#393939', marginHorizontal: 13 }}>
+                  Filter
+                </Text>
               </TouchableOpacity>
               <TouchableOpacity
-                style={{
-                  padding: 8,
-                  paddingHorizontal: 17,
-                  backgroundColor: '#F5F5F5',
-                  justifyContent: 'center',
-                  borderRadius: 7
-                }}
+                style={styles.modalRestBTN}
               >
                 <Text
-                  style={{ fontSize: 10, color: '#616167' }}>RESET</Text>
+                  style={{ fontSize: 10, color: '#616167' }}>
+                  RESET
+                </Text>
               </TouchableOpacity>
             </View>
             <View style={styles.lineSTL} />
@@ -56,65 +47,41 @@ const SearchScreen = ({ navigation }) => {
               alignSelf: 'center',
               marginVertical: 20,
             }}>
-              <Text style={{ fontSize: 15, fontWeight: '400', color: '#393939', }}>Your budget</Text>
-              <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-                <Text style={{ color: '#949EB2' }}>Select</Text>
+              <Text style={styles.modalTxLable1}>Your budget</Text>
+              <View style={styles.modalLable2View}>
+                <Text style={styles.modalSelctTx}>Select</Text>
                 <Image source={Icons.rightIcon} />
               </View>
             </View>
-            <View style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              width: dw / 1.12,
-              alignSelf: 'center',
-              marginVertical: 20,
-            }}>
-              <Text style={{ fontSize: 15, fontWeight: '400', color: '#393939', }}>
+            <View style={styles.modalCNT_basic}>
+              <Text style={styles.modalTxLable1}>
                 Star rating
               </Text>
-              <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-                <Text style={{ color: '#949EB2' }}>Select</Text>
+              <View style={styles.modalLable2View}>
+                <Text style={styles.modalSelctTx}>Select</Text>
                 <Image source={Icons.rightIcon} />
               </View>
             </View>
-            <View style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              width: dw / 1.12,
-              alignSelf: 'center',
-              marginVertical: 20,
-            }}>
-              <Text style={{ fontSize: 15, fontWeight: '400', color: '#393939', }}>
+            <View style={styles.modalCNT_basic}>
+              <Text style={styles.modalTxLable1}>
                 Review score
               </Text>
-              <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-                <Text style={{ color: '#949EB2' }}>Select</Text>
+              <View style={styles.modalLable2View}>
+                <Text style={styles.modalSelctTx}>Select</Text>
                 <Image source={Icons.rightIcon} />
               </View>
             </View>
-            <View style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              width: dw / 1.12,
-              alignSelf: 'center',
-              marginVertical: 20,
-            }}>
-              <Text style={{ fontSize: 15, fontWeight: '400', color: '#393939', }}>
+            <View style={styles.modalCNT_basic}>
+              <Text style={styles.modalTxLable1}>
                 Meals
               </Text>
-              <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-                <Text style={{ color: '#949EB2' }}>Select</Text>
+              <View style={styles.modalLable2View}>
+                <Text style={styles.modalSelctTx}>Select</Text>
                 <Image source={Icons.rightIcon} />
               </View>
             </View>
-            <View style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              width: dw / 1.12,
-              alignSelf: 'center',
-              marginVertical: 20,
-            }}>
-              <Text style={{ fontSize: 15, fontWeight: '400', color: '#393939', }}>
+            <View style={styles.modalCNT_basic}>
+              <Text style={styles.modalTxLable1}>
                 Breakfast Included
               </Text>
               <Switch
@@ -125,14 +92,8 @@ const SearchScreen = ({ navigation }) => {
                 value={Switchenable}
               />
             </View>
-            <View style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              width: dw / 1.12,
-              alignSelf: 'center',
-              marginVertical: 20,
-            }}>
-              <Text style={{ fontSize: 15, fontWeight: '400', color: '#393939', }}>
+            <View style={styles.modalCNT_basic}>
+              <Text style={styles.modalTxLable1}>
                 Deals
               </Text>
               <Switch
@@ -143,14 +104,8 @@ const SearchScreen = ({ navigation }) => {
                 value={Switchenable1}
               />
             </View>
-            <View style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              width: dw / 1.12,
-              alignSelf: 'center',
-              marginVertical: 20,
-            }}>
-              <Text style={{ fontSize: 15, fontWeight: '400', color: '#393939', }}>
+            <View style={styles.modalCNT_basic}>
+              <Text style={styles.modalTxLable1}>
                 Only show available
               </Text>
               <Switch
@@ -161,6 +116,14 @@ const SearchScreen = ({ navigation }) => {
                 value={Switchenable2}
               />
             </View>
+
+            <TouchableOpacity
+              style={[styles.btnView, { marginTop: 35 }]}>
+              <Text style={styles.txBtn}>
+                Apply
+              </Text>
+            </TouchableOpacity>
+
           </View>
         </Modal>
         <View style={styles.searchView}>
@@ -172,24 +135,17 @@ const SearchScreen = ({ navigation }) => {
             placeholder='Search for a hotel, package' />
         </View>
         <View style={styles.lineSTL} />
-        <View style={
-          {
-            flexDirection: 'row',
-            width: dw / 1.12,
-            justifyContent: "space-between",
-            paddingVertical: 13
-          }
-        }>
+        <View style={styles.headerViewStl}>
           <TouchableOpacity
             onPress={() => setModalVisible(true)}
             style={{ flexDirection: 'row', alignItems: 'center' }}>
             <Image
               style={{ height: 18, width: 18 }}
               source={Icons.FilterIcon} />
-            <Text style={{ marginLeft: 8, fontSize: 16, color: "#7B51F1" }}>Filter</Text>
+            <Text style={styles.filterTx}>Filter</Text>
           </TouchableOpacity>
           <TouchableOpacity>
-            <Text style={{ fontSize: 16, color: "#7B51F1" }}>Custome package</Text>
+            <Text style={styles.custmTx}>Custome package</Text>
           </TouchableOpacity>
         </View>
         <View style={[styles.lineSTL, { marginTop: 1 }]} />
@@ -198,14 +154,12 @@ const SearchScreen = ({ navigation }) => {
             width: 356,
             height: 304,
             marginTop: 10
-            // marginLeft: 20,
           }}></Image>
         <Image source={Icons.one}
           style={{
             width: 356,
             height: 304,
             marginTop: 10
-            // marginLeft: 20,
           }}></Image>
 
       </View>
@@ -216,10 +170,7 @@ const SearchScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   safearea: {
     flex: 1,
-    // justifyContent: 'center',
-    // alignItems: 'center',
     backgroundColor: '#FFFFFF',
-    //marginTop: Platform.OS == 'ios' ? 50 : 1,
     paddingTop: Platform.OS == 'ios' ? 50 : 1,
     alignItems: 'center'
   },
@@ -246,8 +197,77 @@ const styles = StyleSheet.create({
     width: '80%'
   },
   lineSTL: {
-    backgroundColor: '#F5F5F5', height: 1.5, width: '100%', marginTop: 10
+    backgroundColor: '#F5F5F5',
+    height: 1.5,
+    width: '100%',
+    marginTop: 10
   },
+  headerViewStl: {
+    flexDirection: 'row',
+    width: dw / 1.12,
+    justifyContent: "space-between",
+    paddingVertical: 13
+  },
+  filterTx: {
+    marginLeft: 8,
+    fontSize: 16,
+    color: "#7B51F1"
+  },
+  custmTx: {
+    fontSize: 16,
+    color: "#7B51F1"
+  },
+  modelHeaderView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: dw / 1.12,
+    alignSelf: 'center',
+    marginTop: 25,
+    marginBottom: 10
+  },
+  modalRestBTN: {
+    padding: 8,
+    paddingHorizontal: 17,
+    backgroundColor: '#F5F5F5',
+    justifyContent: 'center',
+    borderRadius: 7
+  },
+  modalCNT_basic: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: dw / 1.12,
+    alignSelf: 'center',
+    marginVertical: 20,
+  },
+  modalTxLable1: {
+    fontSize: 15,
+    fontWeight: '400',
+    color: '#393939',
+  },
+  modalLable2View: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  modalSelctTx: {
+    color: '#949EB2',
+    marginHorizontal: 8
+  },
+  btnView: {
+    marginHorizontal: 20,
+    backgroundColor: "#FFD65B",
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 18,
+    height: Platform.OS == 'android' ? dh / 15.5 : dh / 19.5,
+    width: dw / 1.12,
+  },
+  txBtn: {
+    color: "#000",
+    fontSize: 14,
+    alignSelf: 'center'
+  },
+
 
 });
 

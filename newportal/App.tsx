@@ -20,6 +20,9 @@ import Getotp from './src/Screen/Getotp';
 import Myprofile from './src/Screen/Myprofile';
 import LoginOptionScreen from './src/Screen/LoginOptionScreen';
 import LoginWithEmail from './src/Screen/LoginWithEmail';
+import TripScreen from './src/Screen/TripScreen';
+import RentalScreen from './src/Screen/RentalScreen';
+import IntercityScreen from './src/Screen/IntercityScreen';
 
 import messaging from '@react-native-firebase/messaging';
 //import PushNotification from 'react-native-push-notification';
@@ -253,6 +256,18 @@ const App = () => {
         <Stack.Screen
           name="LoginWithEmail"
           component={LoginWithEmail}
+        />
+        <Stack.Screen
+          name="TripScreen"
+          component={TripScreen}
+        />
+        <Stack.Screen
+          name="RentalScreen"
+          component={RentalScreen}
+        />
+        <Stack.Screen
+          name="IntercityScreen"
+          component={IntercityScreen}
         />
 
       </Stack.Navigator>

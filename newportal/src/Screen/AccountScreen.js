@@ -8,8 +8,11 @@ const AccountScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.safearea}>
-
-      <View >
+<View >
+        <Text style={styles.Text1}>
+        Account Screen</Text>
+      </View>
+      {/* <View >
         <View style={{
           flexDirection: "row",
           marginLeft: 10,
@@ -115,25 +118,26 @@ const AccountScreen = ({ navigation }) => {
             <Text style={{ marginTop: 24, marginLeft: 10 }}>Logout</Text>
           </View>
         </View>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   safearea: {
-    width: Dimensions.get("screen").width * 1,
-    height: Dimensions.get("screen").width * 0.55,
-    //justifyContent: 'center',
-    //alignItems: 'center',
-    backgroundColor: '#FFD65B',
+    // width: Dimensions.get("screen").width * 1,
+    // height: Dimensions.get("screen").width * 0.55,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex:1
+    //backgroundColor: '#FFD65B',
   },
   Text1: {
     fontSize: 20,
     fontWeight: "bold",
     justifyContent: 'center',
     alignItems: 'center',
-    marginLeft: 100
+    //marginLeft: 100
   },
 });
 
