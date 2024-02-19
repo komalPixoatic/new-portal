@@ -1,28 +1,48 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Dimensions,TouchableOpacity, } from 'react-native';
+import { Text, View, StyleSheet, Dimensions, TouchableOpacity, BackHandler, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Icons from '../constant/assets'
 const dw = Dimensions.get('window').width;
 const dh = Dimensions.get('window').height;
 
 const LoginOptionScreen = ({ navigation }) => {
-    return (
+  useEffect(() => {
+    const backAction = () => {
+      if (!navigation.isFocused()) {
+        return false;
+      }
+
+      Alert.alert("Hold on!", "Are you sure you want to exit?", [
+        { text: "Cancel" },
+        { text: "Yes", onPress: () => BackHandler.exitApp() }
+      ]);
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction
+    );
+
+    return () => backHandler.remove();
+  }, [navigation]);
+  return (
     <SafeAreaView style={styles.safearea}>
       <View>
-            <TouchableOpacity
-      onPress={()=>navigation.navigate("ForgotPasswordScreen")}
+        <TouchableOpacity
+          onPress={() => navigation.navigate("LoginWithNumber")}
           style={styles.logInBtnStyl}>
           <Text style={styles.txBtn}>
             Login with Phone
           </Text>
         </TouchableOpacity>
-      <TouchableOpacity
-      onPress={()=>{
-        navigation.navigate("LoginWithEmail")
-        //navigation.navigate("slider")
-    }}
-          style={[styles.logInBtnStyl,{backgroundColor: "#000000"}]}>
-          <Text style={[styles.txBtn,{color: "#fff"}]}>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("LoginWithEmail")
+            //navigation.navigate("slider")
+          }}
+          style={[styles.logInBtnStyl, { backgroundColor: "#000000" }]}>
+          <Text style={[styles.txBtn, { color: "#fff" }]}>
             Login with email
           </Text>
         </TouchableOpacity>
@@ -45,13 +65,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderRadius: 18,
     height: Platform.OS == 'android' ? dh / 15.5 : dh / 19.5,
-    width:dw/1.12,
+    width: dw / 1.12,
     marginTop: 30
   },
   txBtn: {
     color: "#000",
     fontSize: 14,
-    
+
   },
 });
 

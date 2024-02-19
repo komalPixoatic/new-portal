@@ -10,7 +10,7 @@ import SplashScreen from './src/Screen/SplashScreen';
 import slider from './src/Screen/slider';
 import LoginScreen from './src/Screen/LoginScreen';
 import SignUpScreen from './src/Screen/SignUpScreen';
-import ForgotPasswordScreen from './src/Screen/ForgotPasswordScreen';
+import LoginWithNumber from './src/Screen/LoginWithNumber';
 import TermsAndConditionScreen from './src/Screen/TermsAndConditionScreen';
 import HomeScreen from './src/Screen/HomeScreen';
 import AccountScreen from './src/Screen/AccountScreen';
@@ -224,8 +224,8 @@ const App = () => {
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="ForgotPasswordScreen"
-          component={ForgotPasswordScreen}
+          name="LoginWithNumber"
+          component={LoginWithNumber}
           options={{ headerShown: false }}
         />
         <Stack.Screen

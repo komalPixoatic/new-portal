@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Image, Modal, FlatList, TouchableOpacity, TextInput, Dimensions, Platform } from 'react-native';
+import { Text, View, StyleSheet, Image, Modal, FlatList, TouchableOpacity, TextInput, Dimensions, Platform, BackHandler, Alert  } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 const dw = Dimensions.get('window').width;
 const dh = Dimensions.get('window').height;
@@ -20,9 +20,34 @@ const Getotp = ({ navigation }) => {
         });
     }, 1000);
 
-    // Cleanup function to clear the interval when the component unmounts
-    return () => clearInterval(timer);
-}, []);
+    //useEffect(() => {
+      const backAction = () => {
+        if (!navigation.isFocused()) {
+          return false;
+        }
+  
+        Alert.alert("Hold on!", "Are you sure you want to exit?", [
+          { text: "Cancel" },
+          { text: "Yes", onPress: () => BackHandler.exitApp() }
+        ]);
+        return true;
+      };
+  
+      const backHandler = BackHandler.addEventListener(
+        "hardwareBackPress",
+        backAction
+      );
+  
+      // Cleanup function to clear the interval when the component unmounts
+      return () => {
+        backHandler.remove()
+        clearInterval(timer);
+      }
+    //}, [navigation]);
+
+    //return () => clearInterval(timer);
+    
+}, [navigation]);
 
 function formatTime(time) {
     const minutes = Math.floor(time / 60);

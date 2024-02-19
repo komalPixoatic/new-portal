@@ -1,12 +1,32 @@
 
 import React, { useState, useEffect, } from 'react';
-import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity,Dimensions,Platform } from 'react-native';
+import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity,Dimensions,Platform,BackHandler,Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Icons from '../constant/assets'
 const dw = Dimensions.get('window').width;
 const dh = Dimensions.get('window').height;
 
 const HomeScreen = ({ navigation }) => {
+    useEffect(() => {
+        const backAction = () => {
+          if (!navigation.isFocused()) {
+            return false;
+          }
+    
+          Alert.alert("Hold on!", "Are you sure you want to exit?", [
+            { text: "Cancel" },
+            { text: "Yes", onPress: () => BackHandler.exitApp() }
+          ]);
+          return true;
+        };
+    
+        const backHandler = BackHandler.addEventListener(
+          "hardwareBackPress",
+          backAction
+        );
+    
+        return () => backHandler.remove();
+      }, [navigation]);
     return (
         <ScrollView style={styles.safearea}>
             <View style={{paddingHorizontal:20}}>

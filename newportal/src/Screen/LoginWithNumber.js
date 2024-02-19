@@ -7,10 +7,10 @@ const dw = Dimensions.get('window').width;
 const dh = Dimensions.get('window').height;
 
 import CountryPicker from 'react-native-country-picker-modal'
-import { CountryCode, Country } from '../Screen/utils/types'
+import { CountryCode, Country } from './utils/types'
 
 
-const ForgotPasswordScreen = ({ navigation }) => {
+const LoginWithNumber = ({ navigation }) => {
   
   const [loginwithOTP, setloginwithOTP] = useState(true)
   const [passSecure, setpassSecure] = useState(false)
@@ -206,4 +206,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ForgotPasswordScreen;
+export default LoginWithNumber;
