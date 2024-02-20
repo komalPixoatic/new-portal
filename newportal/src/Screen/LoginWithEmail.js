@@ -10,8 +10,42 @@ const LoginWithEmail = ({ navigation }) => {
   const [loginwithOTP, setloginwithOTP] = useState(true)
   const [passSecure, setpassSecure] = useState(false)
 
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   // useEffect(() => {
   // }, [])
+
+  const sendVarificationButton = () => {
+    console.log("-log->", email, " - ")
+
+    var emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    if (email === '') {
+      alert('please Enter email')
+    } else if (!emailRegex.test(email)) {
+      alert('please Enter valid email')
+    } else {
+      //alert('Success.!!')
+      navigation.navigate("Getotp")
+    }
+
+  }
+
+  const LoginButton = () => {
+    console.log('login btn-->')
+    var re = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+    var emailRegex1 = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    if (email === '') {
+      alert('please Enter email')
+    } else if (!emailRegex1.test(email)) {
+      alert('please Enter valid email')
+    } else if (password == '') {
+      alert("please Enter password");
+    } else if ((re.test(password) != true)) {
+      alert("Password is not Correct");
+    } else {
+      navigation.navigate("MainComponent")
+    }
+  }
 
   return (
     <SafeAreaView style={styles.safearea}>
@@ -41,6 +75,8 @@ const LoginWithEmail = ({ navigation }) => {
               paddingLeft: 15
             }}
             placeholder='Enter your email'
+            value={email}
+            onChangeText={(e) => setEmail(e)}
           >
           </TextInput>
         </View>
@@ -57,7 +93,7 @@ const LoginWithEmail = ({ navigation }) => {
             backgroundColor: "#F8F8F8",
           }}>
             <TextInput
-            secureTextEntry={passSecure}
+              secureTextEntry={passSecure}
               style={{
                 flex: 1,
                 color: '#000',
@@ -66,13 +102,15 @@ const LoginWithEmail = ({ navigation }) => {
                 paddingLeft: 15
               }}
               placeholder='Enter your Password'
+              value={password}
+              onChangeText={(e) => setPassword(e)}
             >
             </TextInput>
             <TouchableOpacity
-            onPress={()=>setpassSecure(!passSecure)}
-            style={{justifyContent:'center',height: '100%',paddingHorizontal:15}}>
-          <Image source={!passSecure?Icon.eyeIcon:Icon.eyeIconInactive} />
-          </TouchableOpacity>
+              onPress={() => setpassSecure(!passSecure)}
+              style={{ justifyContent: 'center', height: '100%', paddingHorizontal: 15 }}>
+              <Image source={!passSecure ? Icon.eyeIcon : Icon.eyeIconInactive} />
+            </TouchableOpacity>
           </View>}
 
         {loginwithOTP ? <TouchableOpacity
@@ -91,20 +129,22 @@ const LoginWithEmail = ({ navigation }) => {
             </Text>
           </TouchableOpacity>}
 
-          {loginwithOTP?
-        <TouchableOpacity onPress={() => navigation.navigate("Getotp")}
-          style={styles.btnView}>
-          <Text style={styles.txBtn}>
-            Send verification code
-          </Text>
-        </TouchableOpacity>
-        :
-        <TouchableOpacity
-          style={styles.btnView}>
-          <Text style={styles.txBtn}>
-            Login
-          </Text>
-        </TouchableOpacity>
+        {loginwithOTP ?
+          <TouchableOpacity
+            onPress={sendVarificationButton}
+            style={styles.btnView}>
+            <Text style={styles.txBtn}>
+              Send verification code
+            </Text>
+          </TouchableOpacity>
+          :
+          <TouchableOpacity
+            onPress={LoginButton}
+            style={styles.btnView}>
+            <Text style={styles.txBtn}>
+              Login
+            </Text>
+          </TouchableOpacity>
         }
 
 

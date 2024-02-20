@@ -8,6 +8,7 @@ import OtpInputs from 'react-native-otp-inputs';
 const Getotp = ({ navigation }) => {
 
   const [duration, setDuration] = useState(2 * 60);
+  const [otpInput, setotpInput] = useState('');
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -56,6 +57,20 @@ function formatTime(time) {
 }
   const PlatformStyl = Platform.OS=='android'?{  width: dw / 8.5,
       height: dh / 15}:{ padding:17}
+
+      const otpBtnHandle = (code)=>{
+        console.log(code.length)
+        console.log(code)
+        setotpInput(code)
+      }
+
+      const verifyOtpButton = ()=>{
+        if(otpInput.length!=4){
+          alert('please Enter 4 digit OTP')
+        }else{
+        navigation.navigate("MainComponent") 
+        }
+      }
   return (
     <SafeAreaView style={styles.safearea}>
       <View>
@@ -76,7 +91,7 @@ function formatTime(time) {
           alignSelf: 'center'
         }}>
           <OtpInputs
-            handleChange={(code) => console.log(code)}
+            handleChange={(code) =>otpBtnHandle(code)}
             numberOfInputs={4}
             inputContainerStyles={[{
                borderWidth: 2,
@@ -107,7 +122,8 @@ function formatTime(time) {
           </Text>
         </View>
 
-        <TouchableOpacity onPress={() => navigation.navigate("MainComponent")}
+        <TouchableOpacity 
+        onPress={() => verifyOtpButton()}
           style={styles.btnView}>
           <Text style={styles.txBtn}>
             Verify it now

@@ -11,7 +11,10 @@ import { CountryCode, Country } from './utils/types'
 
 
 const LoginWithNumber = ({ navigation }) => {
-  
+
+  const [number, setNumber] = useState('')
+  const [password, setPassword] = useState('')
+
   const [loginwithOTP, setloginwithOTP] = useState(true)
   const [passSecure, setpassSecure] = useState(false)
 
@@ -31,7 +34,33 @@ const LoginWithNumber = ({ navigation }) => {
     setCountrycodeN(country.callingCode[0])
   }
 
-  
+  const sendVarificationBTN = () => {
+    console.log("Log -> ")
+    if (number.length == 10) {
+      navigation.navigate("Getotp")
+    } else {
+      alert("please Enter 10 digit mobile number.")
+    }
+  }
+
+  const loginBTN = () => {
+    var re = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+    if (number == '') {
+      alert('please Enter your number')
+    } else if (number.length != 10) {
+      alert("please Enter 10 digit mobile number.")
+    } else if (password == '') {
+      alert("please Enter password");
+    } else if ((re.test(password) != true)) {
+      alert("Password is not Correct");
+      //setcheckpassword("false")
+      //}
+    } else if (true) {
+      //alert("Success.!!")
+      navigation.navigate("MainComponent")
+    }
+  }
+
   return (
     <SafeAreaView style={styles.safearea}>
       <View>
@@ -51,19 +80,6 @@ const LoginWithNumber = ({ navigation }) => {
           justifyContent: "center",
           overflow: 'hidden',
         }}>
-          {/* <TouchableOpacity
-            style={{
-              width: 75,
-              alignItems: 'center',
-              height: '100%',
-              justifyContent: "center",
-              backgroundColor: "#F8F8F8",
-            }}
-            onPress={() => onPressFlag()}>
-            <Text
-              style={{ fontSize: 30, zIndex: 11 }}
-            >{storecountrycode}</Text>
-          </TouchableOpacity> */}
           <View>
             <CountryPicker
               containerButtonStyle={{ backgroundColor: "#F8F8F8", alignItems: 'center', justifyContent: 'center', paddingLeft: 23, paddingRight: 8, height: '100%' }}
@@ -86,6 +102,8 @@ const LoginWithNumber = ({ navigation }) => {
           <TextInput
             style={{ flex: 1, color: '#000', backgroundColor: "#F8F8F8", height: '100%', }}
             maxLength={10}
+            value={number}
+            onChangeText={(e) => setNumber(e)}
             keyboardType='numeric'
           >
           </TextInput>
@@ -112,13 +130,16 @@ const LoginWithNumber = ({ navigation }) => {
                 height: '100%',
                 paddingLeft: 15
               }}
+              maxLength={16}
               placeholder='Enter your Password'
+              value={password}
+              onChangeText={(e) => setPassword(e)}
             >
             </TextInput>
             <TouchableOpacity
               onPress={() => setpassSecure(!passSecure)}
               style={{ justifyContent: 'center', height: '100%', paddingHorizontal: 15 }}>
-              <Image source={!passSecure?Icon.eyeIcon:Icon.eyeIconInactive} />
+              <Image source={!passSecure ? Icon.eyeIcon : Icon.eyeIconInactive} />
             </TouchableOpacity>
           </View>}
 
@@ -139,7 +160,8 @@ const LoginWithNumber = ({ navigation }) => {
           </TouchableOpacity>}
 
         {loginwithOTP ?
-          <TouchableOpacity onPress={() => navigation.navigate("Getotp")}
+          <TouchableOpacity
+            onPress={sendVarificationBTN}
             style={styles.btnView}>
             <Text style={styles.txBtn}>
               Send verification code
@@ -147,6 +169,7 @@ const LoginWithNumber = ({ navigation }) => {
           </TouchableOpacity>
           :
           <TouchableOpacity
+            onPress={loginBTN}
             style={styles.btnView}>
             <Text style={styles.txBtn}>
               Login

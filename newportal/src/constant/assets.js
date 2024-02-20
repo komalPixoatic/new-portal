@@ -62,6 +62,8 @@ const FilterIcon = require('../../assets/FilterIcon.png')
 const leftArrowIcon = require('../../assets/leftArrowIcon.png')
 const eyeIconInactive = require('../../assets/eyeIconInactive.png')
 const rightIcon = require('../../assets/rightIcon.png')
+const exclusiveImage1 = require('../../assets/exclusiveImage1.png')
+
 
 export default {
    carImg,
@@ -128,5 +130,6 @@ export default {
    FilterIcon,
    leftArrowIcon,
    eyeIconInactive,
-   rightIcon
+   rightIcon,
+   exclusiveImage1
 }
