@@ -21,6 +21,9 @@ const TripScreen = ({ navigation }) => {
   const [latitudePar, setlatitudePar] = useState('');
   const [longitudePar, setlongitudePar] = useState('');
 
+
+  const [fromTxValue, setfromTxValue] = useState('');
+
   const getCurrentLocation = () => {
     setlatitudePar('')
     setlongitudePar('')
@@ -44,6 +47,7 @@ const TripScreen = ({ navigation }) => {
   const [isModalVisible, setModalVisible] = useState(false);
   const [isModalVisible2, setModalVisible2] = useState(false);
   const [isModalVisible3, setModalVisible3] = useState(false);
+  const [isModalVisible4, setModalVisible4] = useState(true);
 
 
   const mapStyle = [
@@ -146,7 +150,7 @@ const TripScreen = ({ navigation }) => {
           {/* <Image
             source={Icons.manuIcon}
             style={styles.manuIConsStl} /> */}
-            <Text>Bottom Modal Btn</Text>
+          <Text>Bottom Modal Btn</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.borderBtm}></View>
@@ -284,15 +288,15 @@ const TripScreen = ({ navigation }) => {
             </Text>
           </TouchableOpacity>
 
-          <View style={{ width: dw / 1.08, marginBottom: 15, alignSelf: 'center' }}>
+          {/* <View style={{ width: dw / 1.08, marginBottom: 15, alignSelf: 'center' }}>
             <Text style={{
               fontWeight: 'bold',
               fontSize: 18
             }}>
               Any special assistance</Text>
-          </View>
+          </View> */}
 
-          <View style={styles.btnOptionM_Cnt}>
+          {/* <View style={styles.btnOptionM_Cnt}>
             <TouchableOpacity
               style={styles.btnOptionCnt}>
               <Text>Hospital</Text>
@@ -313,7 +317,7 @@ const TripScreen = ({ navigation }) => {
               <Text>Now</Text>
             </TouchableOpacity>
 
-          </View>
+          </View> */}
 
 
           <View style={{ width: dw / 1.08, marginTop: 15, alignSelf: 'center' }}>
@@ -331,10 +335,22 @@ const TripScreen = ({ navigation }) => {
               borderColor: "#F4F4F4",
               height: dh / 15,
               paddingHorizontal: 22,
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent:'space-between'
+
 
             }}>
-            <Image style={{ height: 40, width: 50 }} source={Icons.carImg} />
-            {/* <Text>Comfort line sedan</Text> */}
+            <View style={{flexDirection:'row',alignItems: 'center',}}>
+            <Image style={{ height: 40, width: 50, marginRight: 25 }} source={Icons.carImg} />
+              <View>
+              <Text>Auto Flex</Text>
+              <Text>5 min away</Text>
+              </View>
+            </View>
+            <View>
+            <Text>50 ₹</Text>
+            </View>
           </TouchableOpacity>
           <TouchableOpacity
             style={{
@@ -342,31 +358,157 @@ const TripScreen = ({ navigation }) => {
               borderColor: "#F4F4F4",
               height: dh / 15,
               paddingHorizontal: 22,
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent:'space-between'
+
 
             }}>
-            <Image style={{ height: 40, width: 50 }} source={Icons.carImg} />
+            <View style={{flexDirection:'row',alignItems: 'center',}}>
+            <Image style={{ height: 40, width: 50, marginRight: 25 }} source={Icons.carImg} />
+              <View>
+              <Text>Auto Flex</Text>
+              <Text>5 min away</Text>
+              </View>
+            </View>
+            <View>
+            <Text>50 ₹</Text>
+            </View>
           </TouchableOpacity>
+          <TouchableOpacity
+            style={{
+              borderWidth: 1,
+              borderColor: "#F4F4F4",
+              height: dh / 15,
+              paddingHorizontal: 22,
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent:'space-between'
+
+
+            }}>
+            <View style={{flexDirection:'row',alignItems: 'center',}}>
+            <Image style={{ height: 40, width: 50, marginRight: 25 }} source={Icons.carImg} />
+              <View>
+              <Text>Auto Flex</Text>
+              <Text>5 min away</Text>
+              </View>
+            </View>
+            <View>
+            <Text>50 ₹</Text>
+            </View>
+          </TouchableOpacity>
+          
 
           <TouchableOpacity
-            style={[styles.logInBtnStyl, { marginVertical: 10 }]}>
+            style={[styles.logInBtnStyl, { marginVertical: 10, marginBottom: 20 }]}>
             <Text style={styles.txBtn}>
               Book Rides
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity
+          {/* <TouchableOpacity
             style={[styles.logInBtnStyl, { marginVertical: 10, marginBottom: 20, backgroundColor: "#fff", borderWidth: 0.8 }]}>
             <Text style={[styles.txBtn]}>
               Reserve a trip
             </Text>
+          </TouchableOpacity> */}
+        </View>
+      </Modal>
+
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={isModalVisible4}
+      // visible={isModalVisible4}
+      //onRequestClose={toggleModal4}
+      >
+        <View
+          style={{
+            backgroundColor: '#FFFFFF',
+            flex: 1
+          }}>
+          <TouchableOpacity
+            onPress={() => { navigation.goBack() }}
+            style={{ padding: 7, marginVertical: 5, marginHorizontal: 15, alignSelf: 'flex-start' }}>
+            <Image style={{}} source={Icons.leftArrowIcon} />
+          </TouchableOpacity>
+          <View style={{
+            width: dw / 1.2,
+            alignSelf: 'center'
+          }}>
+            <TextInput
+              placeholder='To'
+              style={styles.txInputViewStl}
+            />
+            <TextInput
+              placeholder='From'
+              style={styles.txInputViewStl}
+              value={fromTxValue}
+              onChangeText={(e) => setfromTxValue(e)}
+              onSubmitEditing={(e) => {
+                setModalVisible4(false)
+                toggleModal3()
+                console.log(fromTxValue)
+              }
+              }
+            />
+          </View>
+          <View style={{ width: dw / 1.08, marginTop: 15, alignSelf: 'center' }}>
+            <Text style={{
+              fontWeight: 'bold',
+              fontSize: 15,
+              marginBottom: 15
+            }}>
+              Suggested Rides
+            </Text>
+          </View>
+
+          <TouchableOpacity
+            style={{
+              borderWidth: 1,
+              borderColor: "#F4F4F4",
+              height: dh / 15,
+              paddingHorizontal: 22,
+              flexDirection: 'row',
+              alignItems: 'center'
+            }}>
+            <Image style={{ height: 19, width: 15, marginHorizontal: 4 }} source={Icons.Vector} />
+            <Text>C21, mall ab road</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{
+              borderWidth: 1,
+              borderColor: "#F4F4F4",
+              height: dh / 15,
+              paddingHorizontal: 22,
+              flexDirection: 'row',
+              alignItems: 'center'
+            }}>
+            <Image style={{ height: 19, width: 15, marginHorizontal: 4 }} source={Icons.Vector} />
+            <Text>Airport road</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{
+              borderWidth: 1,
+              borderColor: "#F4F4F4",
+              height: dh / 15,
+              paddingHorizontal: 22,
+              flexDirection: 'row',
+              alignItems: 'center'
+            }}>
+            <Image style={{ height: 19, width: 15, marginHorizontal: 4 }} source={Icons.Vector} />
+            <Text>Railway station</Text>
           </TouchableOpacity>
         </View>
+
+
       </Modal>
 
 
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.ContainerStl}>
 
-          {headerView()}
+          {/* {headerView()} */}
           <View>
             {/* <View style={{
                             position: 'absolute',
