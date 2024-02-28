@@ -48,6 +48,7 @@ const TripScreen = ({ navigation }) => {
   const [isModalVisible2, setModalVisible2] = useState(false);
   const [isModalVisible3, setModalVisible3] = useState(false);
   const [isModalVisible4, setModalVisible4] = useState(true);
+  const [isModalVisible5, setModalVisible5] = useState(false);
 
 
   const mapStyle = [
@@ -143,19 +144,51 @@ const TripScreen = ({ navigation }) => {
 
   const headerView = () => {
     return <>
-      <View style={styles.HeaderViewStyle}>
-        <TouchableOpacity
-          onPress={toggleModal2}
-          style={{ alignSelf: 'flex-start' }}>
-          {/* <Image
-            source={Icons.manuIcon}
-            style={styles.manuIConsStl} /> */}
-          <Text>Bottom Modal Btn</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.borderBtm}></View>
+
+      <TouchableOpacity style={{
+        //height: dh / 15,
+        //justifyContent: 'center',
+        // alignSelf:'flex-start',
+        //width:dw/6,
+        //paddingHorizontal: 25,
+        alignItems: 'center',
+        backgroundColor: "#dcdedc",
+        margin: 15,
+        padding: 10,
+        position: 'absolute',
+        zIndex: 1,
+        borderWidth: 0.8,
+        borderColor: "#E4E6E8",
+        borderRadius: 15
+      }}
+        onPress={() => setModalVisible4(true)}>
+        <View
+          //onPress={toggleModal2}
+          style={{}}>
+          <Image
+            source={Icons.iconsbackbutton}
+            style={styles.manuIConsStl} />
+        </View>
+      </TouchableOpacity>
+      {/* <View style={styles.borderBtm}></View> */}
+
     </>
   }
+  // const headerView = () => {
+  //   return <>
+  //     <View style={styles.HeaderViewStyle}>
+  //       <TouchableOpacity
+  //         onPress={toggleModal2}
+  //         style={{ alignSelf: 'flex-start' }}>
+  //         {/* <Image
+  //           source={Icons.manuIcon}
+  //           style={styles.manuIConsStl} /> */}
+  //         <Text>Bottom Modal Btn</Text>
+  //       </TouchableOpacity>
+  //     </View>
+  //     <View style={styles.borderBtm}></View>
+  //   </>
+  // }
   const [showUserLocation, setShowUserLocation] = useState(false);
 
   const toggleUserLocation = () => {
@@ -260,6 +293,25 @@ const TripScreen = ({ navigation }) => {
         visible={isModalVisible3}
         onRequestClose={toggleModal3}
       >
+
+        <TouchableOpacity style={{
+          alignItems: 'center',
+          backgroundColor: "red",
+          margin: 15,
+          padding: 10,
+          position: 'absolute',
+          //zIndex: 1
+          backgroundColor: "#dcdedc",
+          borderWidth: 0.8,
+          borderColor: "#E4E6E8",
+          borderRadius: 15
+        }}
+          onPress={() => { setModalVisible3(false), setModalVisible4(true) }}>
+          <Image
+            source={Icons.iconsbackbutton}
+            style={styles.manuIConsStl} />
+        </TouchableOpacity>
+
         <View
           style={{
             //flex: 1,
@@ -337,19 +389,19 @@ const TripScreen = ({ navigation }) => {
               paddingHorizontal: 22,
               flexDirection: 'row',
               alignItems: 'center',
-              justifyContent:'space-between'
+              justifyContent: 'space-between'
 
 
             }}>
-            <View style={{flexDirection:'row',alignItems: 'center',}}>
-            <Image style={{ height: 40, width: 50, marginRight: 25 }} source={Icons.carImg} />
+            <View style={{ flexDirection: 'row', alignItems: 'center', }}>
+              <Image style={{ height: 40, width: 50, marginRight: 25 }} source={Icons.carImg} />
               <View>
-              <Text>Auto Flex</Text>
-              <Text>5 min away</Text>
+                <Text>Auto Flex</Text>
+                <Text>5 min away</Text>
               </View>
             </View>
             <View>
-            <Text>50 ₹</Text>
+              <Text>50 ₹</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity
@@ -360,19 +412,19 @@ const TripScreen = ({ navigation }) => {
               paddingHorizontal: 22,
               flexDirection: 'row',
               alignItems: 'center',
-              justifyContent:'space-between'
+              justifyContent: 'space-between'
 
 
             }}>
-            <View style={{flexDirection:'row',alignItems: 'center',}}>
-            <Image style={{ height: 40, width: 50, marginRight: 25 }} source={Icons.carImg} />
+            <View style={{ flexDirection: 'row', alignItems: 'center', }}>
+              <Image style={{ height: 40, width: 50, marginRight: 25 }} source={Icons.carImg} />
               <View>
-              <Text>Auto Flex</Text>
-              <Text>5 min away</Text>
+                <Text>Auto Flex</Text>
+                <Text>5 min away</Text>
               </View>
             </View>
             <View>
-            <Text>50 ₹</Text>
+              <Text>50 ₹</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity
@@ -383,23 +435,30 @@ const TripScreen = ({ navigation }) => {
               paddingHorizontal: 22,
               flexDirection: 'row',
               alignItems: 'center',
-              justifyContent:'space-between'
+              justifyContent: 'space-between'
 
 
             }}>
-            <View style={{flexDirection:'row',alignItems: 'center',}}>
-            <Image style={{ height: 40, width: 50, marginRight: 25 }} source={Icons.carImg} />
+            <View style={{ flexDirection: 'row', alignItems: 'center', }}>
+              <Image style={{ height: 40, width: 50, marginRight: 25 }} source={Icons.carImg} />
               <View>
-              <Text>Auto Flex</Text>
-              <Text>5 min away</Text>
+                <Text>Auto Flex</Text>
+                <Text>5 min away</Text>
               </View>
             </View>
             <View>
-            <Text>50 ₹</Text>
+              <Text>50 ₹</Text>
             </View>
           </TouchableOpacity>
-          
 
+
+          <TouchableOpacity
+            onPress={() => setModalVisible3(false, setModalVisible5(true))}
+            style={[styles.logInBtnStyl, { marginVertical: 10, marginBottom: 20, backgroundColor: "#F6F6F6", borderWidth: 0.8, borderColor: "#E4E6E8" }]}>
+            <Text style={styles.txBtn}>
+              payment option
+            </Text>
+          </TouchableOpacity>
           <TouchableOpacity
             style={[styles.logInBtnStyl, { marginVertical: 10, marginBottom: 20 }]}>
             <Text style={styles.txBtn}>
@@ -503,12 +562,43 @@ const TripScreen = ({ navigation }) => {
 
 
       </Modal>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={isModalVisible5}
+      // visible={isModalVisible4}
+      //onRequestClose={toggleModal4}
+      >
+        <View
+          style={{
+            backgroundColor: '#FFFFFF',
+            flex: 1
+          }}>
+          <TouchableOpacity
+            onPress={() => { setModalVisible3(true, setModalVisible5(false)) }}
+            style={{ padding: 7, marginVertical: 5, marginHorizontal: 15, alignSelf: 'flex-start' }}>
+            <Image style={{}} source={Icons.leftArrowIcon} />
+          </TouchableOpacity>
+
+          <View style={{ width: dw / 1.08, marginTop: 15, alignSelf: 'center' }}>
+            <Text style={{
+              fontWeight: 'bold',
+              fontSize: 20,
+              marginBottom: 15
+            }}>
+              Payment option
+            </Text>
+          </View>
+        </View>
+
+
+      </Modal>
 
 
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.ContainerStl}>
 
-          {/* {headerView()} */}
+          {!isModalVisible3 && headerView()}
           <View>
             {/* <View style={{
                             position: 'absolute',
